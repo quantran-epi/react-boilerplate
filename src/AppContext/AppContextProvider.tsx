@@ -1,7 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
 import { IAppContextData, IAppContextProviderProps } from './IAppContext';
 
-const defaultContextData: IAppContextData = {};
+const defaultContextData: IAppContextData = {
+    services: {} as any
+};
 export const AppContext = React.createContext<IAppContextData>(defaultContextData);
 
 export const AppContextProvider: FunctionComponent<IAppContextProviderProps> = ({
