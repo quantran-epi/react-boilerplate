@@ -7,9 +7,13 @@ const defaultContextData: IAppContextData = {
 export const AppContext = React.createContext<IAppContextData>(defaultContextData);
 
 export const AppContextProvider: FunctionComponent<IAppContextProviderProps> = ({
+    services,
     children
 }) => {
-    const [_contextData, _setContextData] = useState<IAppContextData>(defaultContextData);
+    const [_contextData, _setContextData] = useState<IAppContextData>({
+        ...defaultContextData,
+        services: services
+    });
 
     return <AppContext.Provider value={_contextData}>
         {children}
