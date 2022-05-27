@@ -1,4 +1,3 @@
-import { ApiConfig } from '@configs/ApiConfig';
 import { RootRouter } from '@routing/RootRouter';
 import { RegisterServices } from '@services/ServiceLocator';
 import React from 'react';

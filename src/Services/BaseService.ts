@@ -1,6 +1,7 @@
 import { HttpClient } from "@helpers/Http";
 
 interface IBaseService {
+
 }
 
 export interface IServiceHelperCollection {
