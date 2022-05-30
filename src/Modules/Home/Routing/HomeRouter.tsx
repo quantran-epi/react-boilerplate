@@ -5,9 +5,9 @@ import { HomeRoutes } from './HomeRouteConfig';
 export const HomeRouter = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        navigate(HomeRoutes.Dashboard);
-    }, [])
+    // useEffect(() => {
+    //     navigate(HomeRoutes.Dashboard);
+    // }, [])
 
     return <div>
         <h3>Home router</h3>

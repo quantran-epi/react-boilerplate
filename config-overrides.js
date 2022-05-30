@@ -6,6 +6,7 @@ module.exports = {
             ...config.resolve.alias,
             "@components": path.resolve(__dirname, "src/Components"),
             "@modules": path.resolve(__dirname, "src/Modules"),
+            "@widgets": path.resolve(__dirname, "src/Widgets"),
             "@models": path.resolve(__dirname, "src/Models"),
             "@helpers": path.resolve(__dirname, "src/Common/Helpers"),
             "@constants": path.resolve(__dirname, "src/Common/Constants"),
@@ -15,6 +16,7 @@ module.exports = {
             "@services": path.resolve(__dirname, "src/Services"),
             "@i18n": path.resolve(__dirname, "src/I18n/index"),
             "@app-context": path.resolve(__dirname, "src/AppContext/index"),
+            "@hooks": path.resolve(__dirname, "src/Hooks/index"),
         }
         return config;
     }

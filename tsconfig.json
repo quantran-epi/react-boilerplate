@@ -23,6 +23,7 @@
     "paths": {
       "@components/*": ["./src/Components/*"],
       "@modules/*": ["./src/Modules/*"],
+      "@widgets/*": ["./src/Widgets/*"],
       "@models/*": ["./src/Models/*"],
       "@helpers/*": ["./src/Common/Helpers/*"],
       "@constants/*": ["./src/Common/Constants/*"],
@@ -32,6 +33,7 @@
       "@i18n": ["src/I18n/index.ts"],
       "@services/*": ["./src/Services/*"],
       "@app-context": ["./src/AppContext/index.ts"],
+      "@hooks": ["./src/Hooks/index.ts"],
     }
   },
   "include": [
