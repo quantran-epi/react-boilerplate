@@ -1,4 +1,4 @@
-import { HttpClient } from "@helpers/Http";
+import { HttpClient } from "@common/Helpers/Http";
 
 interface IBaseService {
 

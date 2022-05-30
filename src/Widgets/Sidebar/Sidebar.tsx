@@ -1,16 +1,9 @@
 import { Sidebar } from '@components/Layout/Sidebar';
-import { Menu, MenuProps } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
-import { useLocation, useMatch, useNavigate } from 'react-router-dom';
-import { ISidebarItem, SidebarConfig } from '@configs/SidebarConfig';
+import { ISidebarItem } from '@configs/SidebarConfig';
 import { useSidebar } from '@hooks';
+import { Menu, MenuProps } from 'antd';
+import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

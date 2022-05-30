@@ -1,5 +1,5 @@
+import { HttpClient } from '@common/Helpers/Http';
 import { ApiConfig } from '@configs/ApiConfig';
-import { HttpClient } from '@helpers/Http';
 import { AuthService } from '@modules/Auth/Services/AuthService';
 import { IServiceHelperCollection } from './BaseService';
 
