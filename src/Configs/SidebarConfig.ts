@@ -16,29 +16,19 @@ interface ISidebarConfig {
 export const SidebarConfig: ISidebarConfig = {
     items: [
         {
-            label: "Tạo file thu nợ từ Intellect",
+            label: "Thẻ tín dụng",
             key: "1",
-            href: RootRoutes.CreditRoutes.CreditCardDebtCollectionMaker,
-        },
-        {
-            label: "Duyệt file thu nợ từ Intellect",
-            key: "2",
-            href: RootRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
-        },
-        {
-            label: "Item 1",
-            key: "3",
             children: [
                 {
-                    label: "Sub Item 1",
-                    key: "4",
-                    href: RootRoutes.HomeRoutes.Dashboard,
+                    label: "Tạo file thu nợ từ Intellect",
+                    key: "1.1",
+                    href: RootRoutes.CreditRoutes.CreditCardDebtCollectionMaker,
                 },
                 {
-                    label: "Sub Item 2",
-                    key: "5",
-                    href: RootRoutes.AuthRoutes.Login,
-                }
+                    label: "Duyệt file thu nợ từ Intellect",
+                    key: "1.2",
+                    href: RootRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
+                },
             ]
         }
     ]

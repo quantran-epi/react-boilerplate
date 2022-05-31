@@ -33,7 +33,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
     });
 
     const _onSearchBtnClick = () => {
-        _setPage(1);
+        refetch();
     }
 
     const columns = [
@@ -89,7 +89,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
                         label={"Reversal"}>
                         {/* dump */}
-                        <Select defaultValue="2">
+                        <Select>
                             <Option value="">Tất cả</Option>
                             <Option value="1">Item 1</Option>
                             <Option value="2">

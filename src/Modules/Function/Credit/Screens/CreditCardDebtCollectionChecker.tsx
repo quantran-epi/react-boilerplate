@@ -33,7 +33,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
     });
 
     const _onSearchBtnClick = () => {
-        _setPage(1);
+        refetch();
     }
 
     const columns = [

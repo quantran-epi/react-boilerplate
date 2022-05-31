@@ -1,3 +1,6 @@
+import {
+    CaretLeftOutlined
+} from '@ant-design/icons';
 import { Sidebar } from '@components/Layout/Sidebar';
 import { ISidebarItem } from '@configs/SidebarConfig';
 import { useSidebar } from '@hooks';
@@ -9,7 +12,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export const SidebarWidget = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const { sideBarItems } = useSidebar();
+    const { sideBarItems, selectedItems, openItems, setOpenItems } = useSidebar();
     const navigate = useNavigate();
 
     const _handleMenuItemClick = (item: ISidebarItem) => {
@@ -26,16 +29,25 @@ export const SidebarWidget = () => {
         };
     }
 
-    const _getSelectedMenu = (): string[] | undefined => {
-        return sideBarItems.filter(e => e.selected).map(e => e.key);
-    }
-
     const _menuItems = useMemo<MenuItem[]>(() => {
         return sideBarItems.map(_getMenuItemRecursive);
     }, [sideBarItems])
 
-    return <Sidebar width={300} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" items={_menuItems} selectedKeys={_getSelectedMenu()} />
+    return <Sidebar
+        trigger={<CaretLeftOutlined />}
+        zeroWidthTriggerStyle={{
+            backgroundColor: "red"
+        }}
+        width={280}
+        collapsed={collapsed}
+        onCollapse={value => setCollapsed(value)}
+        style={{ backgroundColor: "#fff" }}>
+        <Menu
+            theme="light"
+            mode="inline"
+            items={_menuItems}
+            openKeys={openItems}
+            selectedKeys={selectedItems}
+            onOpenChange={setOpenItems} />
     </Sidebar>
 }
