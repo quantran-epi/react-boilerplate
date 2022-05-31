@@ -29,7 +29,8 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                 .searchMaker(context.queryKey[3] as ICreditCardDebtCollectionMakerSearchViewModel, _page)
             return data;
         },
-        keepPreviousData: true
+        keepPreviousData: true,
+        refetchOnWindowFocus: false
     });
 
     const _onSearchBtnClick = () => {
@@ -129,6 +130,9 @@ export const CreditCardDebtCollectionMakerScreen = () => {
             </Row>
         </Space>
         <DataTable
+            rowSelection={{
+                type: "checkbox",
+            }}
             loading={isFetching}
             size={"small"}
             dataSource={data?.data}

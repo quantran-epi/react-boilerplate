@@ -29,7 +29,8 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
                 .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel, _page)
             return data;
         },
-        keepPreviousData: true
+        keepPreviousData: true,
+        refetchOnWindowFocus: false
     });
 
     const _onSearchBtnClick = () => {
@@ -129,6 +130,9 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
             </Row>
         </Space>
         <DataTable
+            rowSelection={{
+                type: "checkbox",
+            }}
             loading={isFetching}
             size={"small"}
             dataSource={data?.data}
