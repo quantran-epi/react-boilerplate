@@ -1,4 +1,4 @@
-import { ICreditCardDebtCollectionCheckerSearchViewModel } from './../ViewModels/ICreditCardDebtCollectionCheckerViewModel';
+import { ICreditCardDebtCollectionCheckerSearchViewModel } from '../ViewModels/ICreditCardDebtCollectionCheckerViewModel';
 import { BaseService, IServiceHelperCollection } from "@services/BaseService";
 import { ICreditCardDebtCollectionMakerSearchViewModel } from "../ViewModels/ICreditCardDebtCollectionMakerViewModel";
 import { IPaginateQueryResponse } from '@services/Types';

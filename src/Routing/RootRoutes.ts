@@ -1,11 +1,14 @@
-import { HomeRoutes } from '@modules/Home/Routing/HomeRouteConfig';
 import { AuthRoutes } from '@modules/Auth/Routing/AuthRouteConfig';
 import { CreditRoutes } from '@modules/Function/Credit/Routing/CreditRouteConfig';
 
+const AuthorizedRoutes = {
+    Root: "/",
+    CreditRoutes
+}
+
 export const RootRoutes = {
     AuthRoutes,
-    HomeRoutes,
-    CreditRoutes,
+    AuthorizedRoutes,
     StaticRoutes: {
         Error: '/error',
         NotFound: '*'

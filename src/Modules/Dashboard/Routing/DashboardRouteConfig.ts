@@ -1,4 +1,4 @@
-export const HomeRoutes = {
+export const DashboardRoutes = {
     Root: '/',
     Dashboard: '/dashboard'
 }

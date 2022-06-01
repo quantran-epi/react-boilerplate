@@ -1,4 +1,5 @@
 const path = require("path");
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 module.exports = {
     webpack: function (config, env) {
@@ -17,6 +18,7 @@ module.exports = {
             "@app-context": path.resolve(__dirname, "src/AppContext/index"),
             "@hooks": path.resolve(__dirname, "src/Hooks/index"),
         }
+        config.resolve.plugins = config.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
         return config;
     }
 }

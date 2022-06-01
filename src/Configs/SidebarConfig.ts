@@ -22,12 +22,12 @@ export const SidebarConfig: ISidebarConfig = {
                 {
                     label: "Tạo file thu nợ từ Intellect",
                     key: "1.1",
-                    href: RootRoutes.CreditRoutes.CreditCardDebtCollectionMaker,
+                    href: RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionMaker,
                 },
                 {
                     label: "Duyệt file thu nợ từ Intellect",
                     key: "1.2",
-                    href: RootRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
+                    href: RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
                 },
             ]
         }
