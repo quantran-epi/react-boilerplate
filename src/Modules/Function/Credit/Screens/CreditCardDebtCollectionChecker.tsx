@@ -26,7 +26,8 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
     const { data, isFetching, refetch } = useQuery(['Credit', 'CreditCardDebtCollection', 'Checker', _searchModel, _page], {
         queryFn: async (context) => {
             let data = await services.Function.Credit.CreditCardDebtCollection
-                .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel, _page)
+                .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel,
+                    context.queryKey[4] as number)
             return data;
         },
         keepPreviousData: true,

@@ -26,7 +26,8 @@ export const CreditCardDebtCollectionMakerScreen = () => {
     const { data, isFetching, refetch } = useQuery(['Credit', 'CreditCardDebtCollection', 'Maker', _searchModel, _page], {
         queryFn: async (context) => {
             let data = await services.Function.Credit.CreditCardDebtCollection
-                .searchMaker(context.queryKey[3] as ICreditCardDebtCollectionMakerSearchViewModel, _page)
+                .searchMaker(context.queryKey[3] as ICreditCardDebtCollectionMakerSearchViewModel,
+                    context.queryKey[4] as number)
             return data;
         },
         keepPreviousData: true,
@@ -100,12 +101,12 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                     </Form.Item>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.fromTxnDate)}
-                        label={"From Make Date"}>
+                        label={"From Txn Date"}>
                         <DatePicker value={_searchModel.fromTxnDate} />
                     </Form.Item>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.toTxnDate)}
-                        label={"To Make Date"}>
+                        label={"To Txn Date"}>
                         <DatePicker value={_searchModel.toTxnDate} />
                     </Form.Item>
                 </Space>
