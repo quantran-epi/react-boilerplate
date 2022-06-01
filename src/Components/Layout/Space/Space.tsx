@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Space as AntSpace, SpaceProps as AntSpaceProps } from 'antd';
 
-interface ISpaceProps extends AntSpaceProps {
+export interface ISpaceProps extends AntSpaceProps {
 
 }
 

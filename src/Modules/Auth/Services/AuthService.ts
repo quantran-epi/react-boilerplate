@@ -5,13 +5,25 @@ import { ILoginViewModel } from "../ViewModels/LoginViewModel";
 
 interface IAuthService {
     login: (data: ILoginViewModel) => Promise<IUser | null>;
-    isAuthenticated: () => Promise<boolean>;
+    logout: () => Promise<boolean>;
+    isAuthenticated: () => boolean;
+    getAuthenticatedUser: () => IUser | null;
 }
 
 export class AuthService extends BaseService implements IAuthService {
     _tokenKey: string = "usr_token";
     constructor(helpers: IServiceHelperCollection) {
         super(helpers);
+    }
+
+    private _removeToken(): boolean {
+        try {
+            sessionStorage.removeItem(this._tokenKey);
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 
     private _setToken(token: string): boolean {
@@ -25,12 +37,23 @@ export class AuthService extends BaseService implements IAuthService {
     }
 
     private _getToken(): string | null {
-        // get token and check token expiration
+        // get token and check token expiration, if token expire => return null;
         return sessionStorage.getItem(this._tokenKey);
     }
 
-    async isAuthenticated(): Promise<boolean> {
+    private _getUserInfo(): IUser {
+        let token = this._getToken();
+        // get user info from token;
+        return {} as IUser;
+    }
+
+    isAuthenticated(): boolean {
         return this._getToken() !== null;
+    }
+
+    getAuthenticatedUser(): IUser | null {
+        if (this.isAuthenticated()) return this._getUserInfo();
+        return null;
     }
 
     async login(data: ILoginViewModel): Promise<IUser | null> {
@@ -44,5 +67,9 @@ export class AuthService extends BaseService implements IAuthService {
                 else res(null);
             }, 1500)
         })
+    }
+
+    async logout(): Promise<boolean> {
+        return this._removeToken();
     }
 }

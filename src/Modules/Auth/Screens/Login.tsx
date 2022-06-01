@@ -9,10 +9,11 @@ import { Center } from '@components/Layout/Center';
 import { Container } from '@components/Layout/Container';
 import { Space } from '@components/Layout/Space';
 import { RootRoutes } from '@routing/RootRoutes';
+import { Image } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import React, { FunctionComponent } from 'react';
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ILoginViewModel } from '../ViewModels/LoginViewModel';
 
 interface ILoginScreenProps {
@@ -22,6 +23,8 @@ interface ILoginScreenProps {
 export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
 
 }) => {
+    const location = useLocation();
+
     const _login = async (values: ILoginViewModel) => {
         return await services.Auth.login(values);
     }
@@ -32,7 +35,11 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
     const { data, isLoading, mutate } = useMutation({
         mutationFn: _login,
         onSuccess: (user) => {
-            if (user) navigate(RootRoutes.AuthorizedRoutes.Root);
+            if (user) {
+                let returnUrl = (location.state as any)?.returnUrl;
+                if (!returnUrl || _isLoginUrl(returnUrl)) navigate(RootRoutes.AuthorizedRoutes.Root);
+                else navigate(returnUrl);
+            }
         }
     })
 
@@ -40,14 +47,18 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
         mutate(values);
     }
 
+    const _isLoginUrl = (path: string): boolean => {
+        return path.startsWith("/auth");
+    }
+
     return <Container style={{ height: "100%" }}>
         <Center>
             <Card style={{ padding: 15 }}>
                 <Space direction='vertical' size="middle" align='center'>
-                    {/* <Image
+                    <Image
                         preview={false}
                         src='https://www.shb.com.vn/wp-content/uploads/2016/03/Logo-SHB-VN.png'
-                        width={200} /> */}
+                        width={200} />
                     <Form
                         name="login"
                         form={form}
