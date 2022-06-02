@@ -12,8 +12,10 @@ import { RootRoutes } from './RootRoutes';
 import { UserOutlined } from "@ant-design/icons";
 import { Menu } from '@components/Menu';
 import { Dropdown } from '@components/Dropdown';
+import { useTranslation } from 'react-i18next';
 
 export const AuthorizedRouter = () => {
+    const { t } = useTranslation("Common");
     const { services } = useAppContext();
     const navigate = useNavigate();
     const location = useLocation();
@@ -36,13 +38,13 @@ export const AuthorizedRouter = () => {
             <Header className="header" style={{ paddingInline: 25 }}>
                 <Stack justify="space-between">
                     <Space align="center" size={"small"}>
-                        <Typography.Title style={{ marginBottom: 0, color: "white" }} level={3}>Hệ thống ứng dụng thẻ</Typography.Title>
+                        <Typography.Title style={{ marginBottom: 0, color: "white" }} level={3}>{t("TopNavigation.BrandName")}</Typography.Title>
                     </Space>
 
                     <Dropdown overlay={<Menu
                         items={[
                             {
-                                label: "Log out",
+                                label: t("TopNavigation.User.Logout"),
                                 key: '0',
                                 onClick: _onLogoutClick
                             }

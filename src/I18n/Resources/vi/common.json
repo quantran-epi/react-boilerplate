@@ -1,3 +1,9 @@
 {
+    "TopNavigation": {
+        "BrandName": "Hệ thống ứng dụng thẻ",
+        "User": {
+            "Logout": "Đăng xuất"
+        }
+    },
     "Sidebar": {}
 }
