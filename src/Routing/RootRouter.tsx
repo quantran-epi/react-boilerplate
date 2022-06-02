@@ -1,10 +1,8 @@
 import { AuthRouter } from '@modules/Auth/Routing/AuthRouter';
 import { LoginScreen } from '@modules/Auth/Screens/Login';
-import { DashboardRouter } from '@modules/Dashboard/Routing/DashboardRouter';
-import { DashboardScreen } from '@modules/Dashboard/Screens/Dashboard';
-import { CreditRouter } from '@modules/Function/Credit/Routing/CreditRouter';
-import { CreditCardDebtCollectionCheckerScreen } from '@modules/Function/Credit/Screens/CreditCardDebtCollectionChecker';
-import { CreditCardDebtCollectionMakerScreen } from '@modules/Function/Credit/Screens/CreditCardDebtCollectionMaker';
+import { CreditRouter } from '@modules/Credit/Routing/CreditRouter';
+import { CreditCardDebtCollectionCheckerScreen } from '@modules/Credit/Screens/CreditCardDebtCollectionChecker';
+import { CreditCardDebtCollectionMakerScreen } from '@modules/Credit/Screens/CreditCardDebtCollectionMaker';
 import { ErrorScreen } from '@modules/Static/Error';
 import { NotFoundScreen } from '@modules/Static/NotFound';
 import React from 'react';

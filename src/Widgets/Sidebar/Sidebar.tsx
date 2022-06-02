@@ -35,9 +35,6 @@ export const SidebarWidget = () => {
 
     return <Sidebar
         trigger={<CaretLeftOutlined />}
-        zeroWidthTriggerStyle={{
-            backgroundColor: "red"
-        }}
         width={280}
         collapsed={collapsed}
         onCollapse={value => setCollapsed(value)}

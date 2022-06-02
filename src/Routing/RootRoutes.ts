@@ -1,5 +1,5 @@
 import { AuthRoutes } from '@modules/Auth/Routing/AuthRouteConfig';
-import { CreditRoutes } from '@modules/Function/Credit/Routing/CreditRouteConfig';
+import { CreditRoutes } from '@modules/Credit/Routing/CreditRouteConfig';
 
 const AuthorizedRoutes = {
     Root: "/",

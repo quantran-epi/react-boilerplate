@@ -1,15 +1,13 @@
 import { HttpClient } from '@common/Helpers/Http';
 import { ApiConfig } from '@configs/ApiConfig';
 import { AuthService } from '@modules/Auth/Services/AuthService';
-import { CreditCardDebtCollectionService } from '@modules/Function/Credit/Services/CreditCardDebtCollectionService';
+import { CreditCardDebtCollectionService } from '@modules/Credit/Services/CreditCardDebtCollectionService';
 import { IServiceHelperCollection } from './BaseService';
 
 export interface IServiceLocator {
     Auth: AuthService;
-    Function: {
-        Credit: {
-            CreditCardDebtCollection: CreditCardDebtCollectionService
-        }
+    Credit: {
+        CreditCardDebtCollection: CreditCardDebtCollectionService
     }
 }
 
@@ -22,10 +20,8 @@ export function RegisterServices(): IServiceLocator {
 
     return {
         Auth: authService,
-        Function: {
-            Credit: {
-                CreditCardDebtCollection: creditCardDebtCollectionService
-            }
+        Credit: {
+            CreditCardDebtCollection: creditCardDebtCollectionService
         }
     }
 }

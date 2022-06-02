@@ -1,0 +1,9 @@
+{
+    "Search": {
+        "RefNo": "Ref No",
+        "Bin": "BIN",
+        "Reversal": "Reversal",
+        "FromTxnDate": "From Txn Date",
+        "ToTxnDate": "To Txn Date"
+    }
+}

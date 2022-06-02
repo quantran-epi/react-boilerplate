@@ -1,5 +1,9 @@
-import { IResource } from './../abstract/IResource';
+import CreditCardDebtCollectionMaker from '@modules/Credit/Resources/vi/CreditCardDebtCollectionMaker.json';
+import CreditCardDebtCollectionChecker from '@modules/Credit/Resources/vi/CreditCardDebtCollectionChecker.json';
 
-export const vi: IResource = {
-    title: "title_vi"
+export const vi = {
+    Credit: {
+        CreditCardDebtCollectionMaker,
+        CreditCardDebtCollectionChecker
+    }
 }

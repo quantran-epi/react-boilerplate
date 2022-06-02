@@ -1,7 +1,7 @@
+import { ISidebarItem, SidebarConfig } from "@configs/SidebarConfig";
+import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
-import { ISidebarItem, SidebarConfig } from "@configs/SidebarConfig"
-import { useEffect, useMemo, useState } from "react";
-// import { uniq } from 'lodash';
+import { uniq } from 'lodash';
 
 interface IUseSidebar {
     sideBarItems: ISidebarItem[];
@@ -23,8 +23,8 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
     useEffect(() => {
         let selectedItems = _selectedItems();
-        // _setOpenItems(uniq(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat()));
-        _setOpenItems(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat());
+        _setOpenItems(uniq(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat()));
+        // _setOpenItems(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat());
     }, [location])
 
     const getParentOfSelected = (item: ISidebarItem, parent: string, selectedItems: string[]): string[] => {

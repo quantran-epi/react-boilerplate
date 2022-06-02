@@ -9,25 +9,27 @@ import { Col, Row } from '@components/Grid';
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
-import { ICreditCardDebtCollectionMakerSearchViewModel } from '../ViewModels/ICreditCardDebtCollectionMakerViewModel';
+import { ICreditCardDebtCollectionCheckerSearchViewModel } from '../ViewModels/ICreditCardDebtCollectionCheckerViewModel';
 
-export const CreditCardDebtCollectionMakerScreen = () => {
-    const [form] = Form.useForm<ICreditCardDebtCollectionMakerSearchViewModel>();
-    const [_searchModel] = useState<ICreditCardDebtCollectionMakerSearchViewModel>({
+export const CreditCardDebtCollectionCheckerScreen = () => {
+    const { t } = useTranslation('Credit', { keyPrefix: "CreditCardDebtCollectionChecker" });
+    const [form] = Form.useForm<ICreditCardDebtCollectionCheckerSearchViewModel>();
+    const [_searchModel] = useState<ICreditCardDebtCollectionCheckerSearchViewModel>({
         refNo: "",
         bin: "",
         reversal: "",
-        fromTxnDate: moment(),
-        toTxnDate: moment()
+        fromMakeDate: moment(),
+        toMakeDate: moment()
     });
     const { services } = useAppContext();
     const [_page, _setPage] = useState<number>(1);
 
-    const { data, isFetching, refetch } = useQuery(['Credit', 'CreditCardDebtCollection', 'Maker', _searchModel, _page], {
+    const { data, isFetching, refetch } = useQuery(['Credit', 'CreditCardDebtCollection', 'Checker', _searchModel, _page], {
         queryFn: async (context) => {
-            let data = await services.Function.Credit.CreditCardDebtCollection
-                .searchMaker(context.queryKey[3] as ICreditCardDebtCollectionMakerSearchViewModel,
+            let data = await services.Credit.CreditCardDebtCollection
+                .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel,
                     context.queryKey[4] as number)
             return data;
         },
@@ -76,23 +78,23 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                 <Space size={"small"}>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.refNo)}
-                        label={"RefNo"}>
+                        label={t("Search.RefNo")}>
                         <Input value={_searchModel.refNo} onChange={(event) => form.setFieldsValue({
                             refNo: event.target.value
                         })} />
                     </Form.Item>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.bin)}
-                        label={"BIN"}>
+                        label={t("Search.Bin")}>
                         <Input value={_searchModel.bin} onChange={(event) => form.setFieldsValue({
                             bin: event.target.value
                         })} />
                     </Form.Item>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
-                        label={"Reversal"}>
+                        label={t("Search.Reversal")}>
                         {/* dump */}
-                        <Select>
+                        <Select defaultValue="2">
                             <Option value="">Tất cả</Option>
                             <Option value="1">Item 1</Option>
                             <Option value="2">
@@ -101,27 +103,28 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        name={ObjectPropertyHelper.nameof(_searchModel, e => e.fromTxnDate)}
-                        label={"From Txn Date"}>
-                        <DatePicker value={_searchModel.fromTxnDate} />
+                        name={ObjectPropertyHelper.nameof(_searchModel, e => e.fromMakeDate)}
+                        label={t("Search.FromMakeDate")}>
+                        <DatePicker value={_searchModel.fromMakeDate} />
                     </Form.Item>
                     <Form.Item
-                        name={ObjectPropertyHelper.nameof(_searchModel, e => e.toTxnDate)}
-                        label={"To Txn Date"}>
-                        <DatePicker value={_searchModel.toTxnDate} />
+                        name={ObjectPropertyHelper.nameof(_searchModel, e => e.toMakeDate)}
+                        label={t("Search.ToMakeDate")}>
+                        <DatePicker value={_searchModel.toMakeDate} />
                     </Form.Item>
                 </Space>
             </Form>
             <Row>
                 <Col span={24} style={{ textAlign: 'left' }}>
                     <Space size={"small"}>
-                        <Button type="primary" htmlType="submit" onClick={_onSearchBtnClick}>
+                        <Button disabled={isFetching} type="primary" htmlType="submit" onClick={_onSearchBtnClick}>
                             Search
                         </Button>
-                        <Button>
-                            Send Authorial
+                        <Button disabled={isFetching}>
+                            Processing
                         </Button>
                         <Button
+                            disabled={isFetching}
                             onClick={() => {
                                 form.resetFields();
                             }}>
