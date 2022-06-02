@@ -29,7 +29,7 @@
       "@redux/*": ["src/Redux/*"],
       "@routing/*": ["./src/Routing/*"],
       "@configs/*": ["./src/Configs/*"],
-      "@i18n": ["src/I18n/index.ts"],
+      "@i18n": ["src/I18n/init.ts"],
       "@services/*": ["./src/Services/*"],
       "@app-context": ["./src/AppContext/index.ts"],
       "@hooks": ["./src/Hooks/index.ts"],

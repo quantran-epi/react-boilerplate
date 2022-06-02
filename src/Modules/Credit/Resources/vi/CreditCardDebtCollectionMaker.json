@@ -1,4 +1,7 @@
 {
+    "Header": {
+        "Title": "Thẻ tín dụng"
+    },
     "Search": {
         "RefNo": "Ref No",
         "Bin": "BIN",

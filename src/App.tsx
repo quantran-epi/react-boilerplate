@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css';
 import { AppContextProvider } from './AppContext';
 import { ErrorBoundary } from './ErrorBoundary';
-import { initI18n } from './I18n';
+import { initI18n } from './I18n/init';
 
 const queryClient = new QueryClient()
 initI18n();
