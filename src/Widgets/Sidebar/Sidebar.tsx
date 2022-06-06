@@ -2,8 +2,8 @@ import {
     CaretLeftOutlined
 } from '@ant-design/icons';
 import { Sidebar } from '@components/Layout/Sidebar';
-import { ISidebarItem } from '@configs/SidebarConfig';
 import { useSidebar } from '@hooks';
+import { ISidebarItem } from '@models/Sidebar';
 import { Menu, MenuProps } from 'antd';
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

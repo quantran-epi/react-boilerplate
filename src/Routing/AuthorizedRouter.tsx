@@ -38,7 +38,7 @@ export const AuthorizedRouter = () => {
             <Header className="header" style={{ paddingInline: 25 }}>
                 <Stack justify="space-between">
                     <Space align="center" size={"small"}>
-                        <Typography.Title style={{ marginBottom: 0, color: "white" }} level={3}>{t("TopNavigation.BrandName")}</Typography.Title>
+                        <Typography.Title style={{ marginBottom: 0, color: "white" }} level={3}>{t("TopNavigation.AppName")}</Typography.Title>
                     </Space>
 
                     <Dropdown overlay={<Menu

@@ -1,7 +1,8 @@
-import { ISidebarItem, SidebarConfig } from "@configs/SidebarConfig";
+import { SidebarConfig } from "@configs/SidebarConfig";
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { uniq } from 'lodash';
+import { ISidebarItem } from "@models/Sidebar";
 
 interface IUseSidebar {
     sideBarItems: ISidebarItem[];

@@ -18,5 +18,3 @@ export function initI18n() {
             }
         });
 }
-
-console.log(resources);

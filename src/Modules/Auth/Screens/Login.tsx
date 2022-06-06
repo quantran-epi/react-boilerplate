@@ -32,7 +32,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
     const [form] = useForm<ILoginViewModel>();
     const { services } = useAppContext();
     const navigate = useNavigate();
-    const { data, isLoading, mutate } = useMutation({
+    const { isLoading, mutate } = useMutation({
         mutationFn: _login,
         onSuccess: (user) => {
             if (user) {
@@ -62,7 +62,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     <Form
                         name="login"
                         form={form}
-                        initialValues={{ username: "admin", password: "password", remember: true }}
+                        initialValues={{ username: "chungps", password: "Shb@2022", remember: true }}
                         onFinish={_onSubmit}
                         style={{ width: 250 }}>
                         <Form.Item

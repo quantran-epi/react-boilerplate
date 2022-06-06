@@ -2,7 +2,6 @@ interface IApiConfig {
     Root: string;
     Auth: {
         Login: string;
-        Logout: string;
     },
     Authorized: {
 
@@ -12,8 +11,7 @@ interface IApiConfig {
 export const ApiConfig: IApiConfig = {
     Root: process.env.REACT_APP_ROOT_API_URL || "",
     Auth: {
-        Login: '/api-login',
-        Logout: '/api-logout'
+        Login: '/auth/signin',
     },
     Authorized: {
 
