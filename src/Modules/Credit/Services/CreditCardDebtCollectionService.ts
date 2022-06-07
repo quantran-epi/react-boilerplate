@@ -2,6 +2,7 @@ import { ICreditCardDebtCollectionCheckerSearchViewModel } from '../ViewModels/I
 import { BaseService, IServiceHelperCollection } from "@services/BaseService";
 import { ICreditCardDebtCollectionMakerSearchViewModel } from "../ViewModels/ICreditCardDebtCollectionMakerViewModel";
 import { IPaginateQueryResponse } from '@services/Types';
+import { IAuthService } from '@modules/Auth/Services/AuthService';
 
 interface ICreditCardDebtCollectionService {
     searchMaker: (params: ICreditCardDebtCollectionMakerSearchViewModel, page: number) => Promise<IPaginateQueryResponse<any[]>>;
