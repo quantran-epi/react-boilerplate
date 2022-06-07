@@ -62,7 +62,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     <Form
                         name="login"
                         form={form}
-                        initialValues={{ username: "chungps", password: "Shb@2022", remember: true }}
+                        initialValues={{ username: "chungps", password: "Shb@2022" }}
                         onFinish={_onSubmit}
                         style={{ width: 250 }}>
                         <Form.Item

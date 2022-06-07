@@ -25,13 +25,6 @@ export class HttpClient implements IHttpClient {
         return this.apiUrl.concat(url);
     }
 
-    updateBody(body?: any, configs?: IHttpConfig): IHttpConfig | undefined {
-        if (!body) return configs;
-        if (!configs) configs = {};
-        configs.data = body;
-        return configs;
-    }
-
     appendConfigs(configs?: IHttpConfig): IHttpConfig {
         if (!configs) return this._defaultConfigs;
         return Object.assign(this._defaultConfigs, configs);
@@ -42,13 +35,11 @@ export class HttpClient implements IHttpClient {
     }
 
     post<T>(url: string, body: any, configs?: IHttpConfig): Promise<IHttpResponse<T>> {
-        configs = this.updateBody(body, configs);
-        return axios.post(this.updateUrl(url), this.appendConfigs(configs));
+        return axios.post(this.updateUrl(url), body, this.appendConfigs(configs));
     }
 
     put<T>(url: string, body: any, configs?: IHttpConfig): Promise<IHttpResponse<T>> {
-        configs = this.updateBody(body, configs);
-        return axios.put(this.updateUrl(url), this.appendConfigs(configs));
+        return axios.put(this.updateUrl(url), body, this.appendConfigs(configs));
     }
 
     delete<T>(url: string, configs?: IHttpConfig): Promise<IHttpResponse<T>> {
