@@ -3,26 +3,23 @@ import { useAppContext } from '@app-context';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { Form } from '@components/Form';
-import { Checkbox } from '@components/Form/Checkbox';
 import { Input } from '@components/Form/Input';
+import { Box } from '@components/Layout/Box';
 import { Center } from '@components/Layout/Center';
 import { Container } from '@components/Layout/Container';
 import { Space } from '@components/Layout/Space';
+import { Typography } from '@components/Typography';
+import { useWindowDimension } from '@hooks';
 import { RootRoutes } from '@routing/RootRoutes';
 import { Image } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import React, { FunctionComponent } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useMutation } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ILoginViewModel } from '../ViewModels/LoginViewModel';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import login_bg from '../../../../assets/images/login-bg.jpeg';
-import { Stack } from '@components/Layout/Stack';
-import { Typography } from '@components/Typography';
-import { useTranslation } from 'react-i18next';
-
-const windowWidth = window.screen.width;
-const windowHeight = window.screen.height;
+import { ILoginViewModel } from '../ViewModels/LoginViewModel';
 
 interface ILoginScreenProps {
 
@@ -33,6 +30,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
 }) => {
     const location = useLocation();
     const { t } = useTranslation();
+    const { innerHeight, innerWidth, availHeight, availWidth } = useWindowDimension();
 
     const _login = async (values: ILoginViewModel) => {
         return await services.Auth.login(values);
@@ -60,11 +58,12 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
         return path.startsWith("/auth");
     }
 
-    return <Container style={{ height: "100%" }}>
-        <LazyLoadImage
-            height={windowHeight}
-            src={login_bg} // use normal <img> attributes as props
-            width={windowWidth} />
+    return <Container style={{ overflowY: 'hidden' }}>
+        <Box width={innerWidth} height={innerHeight}>
+            <LazyLoadImage
+                src={login_bg} // use normal <img> attributes as props
+                width={availWidth} />
+        </Box>
         <div style={{ position: "fixed", top: 0, left: 0, bottom: 0, right: 0, backgroundColor: "rgba(0, 0, 0, 0.3)" }}>
             <Center style={{ position: "fixed", top: 0, bottom: 0, right: "7%" }}>
                 <Card style={{ padding: "5px 18px 18px 18px", borderRadius: 10 }}>

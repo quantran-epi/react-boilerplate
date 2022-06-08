@@ -6,5 +6,5 @@ interface IContainerProps extends AntLayoutProps {
 }
 
 export const Container: FunctionComponent<IContainerProps> = (props) => {
-    return <AntLayout {...props} style={{ minHeight: "100%" }} />
+    return <AntLayout {...props} style={{ minHeight: "100%", ...props.style }} />
 }
