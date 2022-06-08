@@ -69,13 +69,13 @@ export const CreditCardDebtCollectionMakerScreen = () => {
         }
     ];
 
-    return <Space direction="vertical" size={"middle"}>
-        <Space direction="vertical" size={'middle'} className="app-search-area">
+    return <Space direction="vertical" size={"middle"} style={{ width: "100%" }}>
+        <Space direction="vertical" size={0} className="app-search-area">
             <Form
-                layout={"inline"}
+                layout={"vertical"}
                 form={form}
                 initialValues={_searchModel}>
-                <Space size={"small"}>
+                <Space size={"middle"}>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.refNo)}
                         label={t("Search.RefNo")}>
@@ -94,7 +94,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
                         label={t("Search.Reversal")}>
                         {/* dump */}
-                        <Select>
+                        <Select defaultValue="2">
                             <Option value="">Tất cả</Option>
                             <Option value="1">Item 1</Option>
                             <Option value="2">

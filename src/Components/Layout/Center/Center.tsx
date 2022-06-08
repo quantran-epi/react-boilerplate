@@ -3,13 +3,15 @@ import { Space } from '../Space';
 
 interface ICenterProps {
     children: React.ReactNode;
+    style?: React.CSSProperties;
 }
 
 export const Center: FunctionComponent<ICenterProps> = (props) => {
     return <div style={{
         flex: 1,
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        ...props.style
     }}>
         <div style={{
             display: "flex",

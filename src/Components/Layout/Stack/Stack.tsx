@@ -9,6 +9,7 @@ interface IStackProps {
     alignSelf?: "auto" | "stretch" | "center" | "flex-start" | "flex-end" | "baseline" | "initial" | "inherit";
     gap?: ISpaceProps["size"];
     children: React.ReactNode;
+    styles?: React.CSSProperties;
 }
 
 export const Stack: FunctionComponent<IStackProps> = ({
@@ -18,7 +19,8 @@ export const Stack: FunctionComponent<IStackProps> = ({
     alignSelf,
     wrap,
     gap = "middle",
-    children
+    children,
+    styles
 }) => {
     const _styles = (): React.CSSProperties => {
         return {
@@ -27,7 +29,8 @@ export const Stack: FunctionComponent<IStackProps> = ({
             justifyContent: justify,
             alignItems: align,
             alignSelf: alignSelf,
-            flexWrap: wrap
+            flexWrap: wrap,
+            ...styles
         }
     }
 

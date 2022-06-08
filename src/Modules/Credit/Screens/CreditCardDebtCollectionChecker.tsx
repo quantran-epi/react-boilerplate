@@ -6,6 +6,7 @@ import { Form } from '@components/Form';
 import { Input } from '@components/Form/Input';
 import { Option, Select } from '@components/Form/Select';
 import { Col, Row } from '@components/Grid';
+import { Stack } from '@components/Layout/Stack';
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
@@ -69,13 +70,13 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
         }
     ];
 
-    return <Space direction="vertical" size={"middle"}>
-        <Space direction="vertical" size={'middle'} className="app-search-area">
+    return <Space direction="vertical" size={"middle"} style={{ width: "100%" }}>
+        <Space direction="vertical" size={0} className="app-search-area">
             <Form
-                layout={"inline"}
+                layout={"vertical"}
                 form={form}
                 initialValues={_searchModel}>
-                <Space size={"small"}>
+                <Space size={"middle"}>
                     <Form.Item
                         name={ObjectPropertyHelper.nameof(_searchModel, e => e.refNo)}
                         label={t("Search.RefNo")}>
