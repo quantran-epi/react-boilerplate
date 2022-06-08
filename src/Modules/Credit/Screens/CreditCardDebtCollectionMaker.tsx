@@ -1,5 +1,7 @@
 import { useAppContext } from '@app-context';
+import { ExcelHelper } from '@common/Helpers/Excel';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
+import { PdfHelper } from '@common/Helpers/Pdf';
 import { Button } from '@components/Button';
 import { DataTable } from '@components/DataTable';
 import { Form } from '@components/Form';
@@ -120,7 +122,11 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                         <Button disabled={isFetching} type="primary" htmlType="submit" onClick={_onSearchBtnClick}>
                             Search
                         </Button>
-                        <Button disabled={isFetching}>
+                        <Button disabled={isFetching} onClick={() => {
+                            let element = document.getElementById('test-table')?.getElementsByTagName('table')[0];
+                            if (element)
+                                new ExcelHelper().saveFromTable(element)
+                        }}>
                             Send Authorial
                         </Button>
                         <Button
@@ -135,6 +141,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
             </Row>
         </Space>
         <DataTable
+            id='test-table'
             rowSelection={{
                 type: "checkbox",
             }}
