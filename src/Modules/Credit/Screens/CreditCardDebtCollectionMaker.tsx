@@ -123,9 +123,17 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                             Search
                         </Button>
                         <Button disabled={isFetching} onClick={() => {
-                            let element = document.getElementById('test-table')?.getElementsByTagName('table')[0];
-                            if (element)
-                                new ExcelHelper().saveFromTable(element)
+                            new ExcelHelper().saveFromDataSet({
+                                rows: data?.data.map(e => {
+                                    let data = e;
+                                    delete data["key"];
+                                    return data;
+                                }) || [],
+                                columns: columns.map(e => ({
+                                    key: e.key,
+                                    label: e.title
+                                }))
+                            });
                         }}>
                             Send Authorial
                         </Button>
