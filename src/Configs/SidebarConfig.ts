@@ -8,6 +8,11 @@ interface ISidebarConfig {
 export const SidebarConfig: ISidebarConfig = {
     items: [
         {
+            key: '0',
+            label: "Home",
+            href: RootRoutes.AuthorizedRoutes.Root
+        },
+        {
             label: "Thẻ tín dụng",
             key: "1",
             children: [

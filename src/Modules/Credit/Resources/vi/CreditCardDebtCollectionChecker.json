@@ -1,6 +1,7 @@
 {
     "Header": {
-        "Title": "Thẻ tín dụng"
+        "Title": "Thẻ tín dụng",
+        "Subtitle": "Duyệt file thu nợ từ Intellect"
     },
     "Search": {
         "RefNo": "Ref No",

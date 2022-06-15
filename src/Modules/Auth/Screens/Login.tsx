@@ -1,5 +1,6 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useAppContext } from '@app-context';
+import { AppColor } from '@common/Constants/AppColor';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { Form } from '@components/Form';
@@ -112,8 +113,8 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                                 type="primary"
                                 htmlType="submit"
                                 style={{
-                                    backgroundColor: "#f58220",
-                                    borderColor: "#f58220"
+                                    backgroundColor: AppColor.primary,
+                                    borderColor: AppColor.primary
                                 }}>
                                 {t("Auth:Login.Form.LoginButton")}
                             </Button>

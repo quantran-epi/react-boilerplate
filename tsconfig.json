@@ -26,13 +26,13 @@
       "@widgets/*": ["./src/Widgets/*"],
       "@models/*": ["./src/Models/*"],
       "@common/*": ["./src/Common/*"],
-      "@redux/*": ["src/Redux/*"],
       "@routing/*": ["./src/Routing/*"],
       "@configs/*": ["./src/Configs/*"],
-      "@i18n": ["src/I18n/init.ts"],
+      "@i18n": ["./src/I18n/init.ts"],
       "@services/*": ["./src/Services/*"],
       "@app-context": ["./src/AppContext/index.ts"],
       "@hooks": ["./src/Hooks/index.ts"],
+      "@store": ["./src/Store/index.ts"]
     }
   },
   "include": [

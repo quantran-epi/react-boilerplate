@@ -1,5 +1,6 @@
 {
     "TopNavigation": {
+        "AppNameAbbr": "CARD UTILITY SYSTEM",
         "AppName": "Hệ thống ứng dụng thẻ",
         "User": {
             "Logout": "Đăng xuất"

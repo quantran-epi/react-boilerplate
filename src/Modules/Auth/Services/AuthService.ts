@@ -2,8 +2,6 @@ import { ApiConfig } from "@configs/ApiConfig";
 import { IUser } from "@models/User";
 import { BaseService, IServiceHelperCollection } from "@services/BaseService";
 import { ILoginViewModel } from "../ViewModels/LoginViewModel";
-import jwt_decode from "jwt-decode";
-import jwtDecode from "jwt-decode";
 
 interface ISignInResponseData {
     token: string,

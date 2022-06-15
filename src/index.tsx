@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.less';
 // import 'antd/dist/antd.compact.css';
 
 const root = ReactDOM.createRoot(
