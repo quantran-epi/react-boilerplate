@@ -66,9 +66,8 @@ export class BaseService implements IBaseService {
     }
 
     protected _getUserInfo(): IUser | null {
-        // let savedUser = sessionStorage.getItem(this._userInfoKey);
-        // return savedUser ? JSON.parse(savedUser) : null;
-        return { username: "chungps" }
+        let savedUser = sessionStorage.getItem(this._userInfoKey);
+        return savedUser ? JSON.parse(savedUser) : null;
     }
 
     protected _getRequestHeader(): AxiosRequestHeaders {

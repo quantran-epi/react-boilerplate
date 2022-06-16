@@ -1,6 +1,6 @@
 import Credit from '@modules/Credit/Resources/vi';
 import Auth from '@modules/Auth/Resources/vi';
-import Common from './common.json';
+import Common from './Common.json';
 
 export const vi = {
     Common,

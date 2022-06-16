@@ -1,4 +1,4 @@
-import Common from './common.json';
+import Common from './Common.json';
 
 export default {
     Common,

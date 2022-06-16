@@ -1,7 +1,4 @@
-import { useAppContext } from '@app-context';
-import { ExcelHelper } from '@common/Helpers/Excel';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
-import { PdfHelper } from '@common/Helpers/Pdf';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { DataTable } from '@components/DataTable';
@@ -9,7 +6,7 @@ import { Form } from '@components/Form';
 import { Input } from '@components/Form/Input';
 import { Option, Select } from '@components/Form/Select';
 import { Col, Row } from '@components/Grid';
-import { IAppContext, useStore } from '@store';
+import { useStore } from '@store';
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
@@ -27,7 +24,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
         fromTxnDate: moment(),
         toTxnDate: moment()
     });
-    const { services } = useAppContext();
+    const services = useStore(state => state.services);
     const [_page, _setPage] = useState<number>(1);
     const setCurrentFunction = useStore(state => state.setCurrentFunction);
 

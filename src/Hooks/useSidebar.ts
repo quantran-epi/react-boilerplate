@@ -1,7 +1,7 @@
 import { SidebarConfig } from "@configs/SidebarConfig";
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
-import { uniq } from 'lodash';
+import { debounce, flatMapDeep, map, uniq } from 'lodash';
 import { ISidebarItem } from "@models/Sidebar";
 
 interface IUseSidebar {
@@ -11,6 +11,8 @@ interface IUseSidebar {
     addOpenItem: (key: string) => void;
     removeOpenItem: (key: string) => void;
     setOpenItems: (keys: string[]) => void;
+    searchText: string;
+    onChangeSearchText: (value: string) => void;
 }
 
 interface IUseSidebarProps {
@@ -21,11 +23,11 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
     const location = useLocation();
     const [_openItems, _setOpenItems] = useState<string[]>([]);
     const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(SidebarConfig.items);
+    const [_searchText, _setSearchText] = useState<string>("");
 
     useEffect(() => {
         let selectedItems = _selectedItems();
         _setOpenItems(uniq(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat()));
-        // _setOpenItems(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat());
     }, [location])
 
     const getParentOfSelected = (item: ISidebarItem, parent: string, selectedItems: string[]): string[] => {
@@ -58,12 +60,37 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
         _setOpenItems(_openItems.filter(e => e !== key));
     }
 
+    const _isMatch = (title: string): boolean => {
+        return title.toLowerCase().includes(_searchText.toLowerCase());
+    }
+
+    const _flatten = (array: ISidebarItem[], result: ISidebarItem[]) => {
+        array.forEach(function (el) {
+            if (el.children) {
+                _flatten(el.children, result);
+            } else {
+                result.push(el);
+            }
+        });
+    }
+
+    const _filteredSidebarItems = (): ISidebarItem[] => {
+        if (_searchText === "")
+            return _sideBarItems;
+
+        let flattenedItems = [] as ISidebarItem[];
+        _flatten(_sideBarItems, flattenedItems);
+        return flattenedItems.filter(item => _isMatch(item.label));
+    }
+
     return {
-        sideBarItems: _sideBarItems,
+        sideBarItems: _filteredSidebarItems(),
         selectedItems: _selectedItems(),
         openItems: _openItems,
         addOpenItem: _addOpenItem,
         removeOpenItem: _removeOpenItem,
-        setOpenItems: _setOpenItems
+        setOpenItems: _setOpenItems,
+        searchText: _searchText,
+        onChangeSearchText: _setSearchText
     }
 }

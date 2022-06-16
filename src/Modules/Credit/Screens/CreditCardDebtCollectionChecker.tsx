@@ -1,4 +1,3 @@
-import { useAppContext } from '@app-context';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
@@ -25,9 +24,9 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
         fromMakeDate: moment(),
         toMakeDate: moment()
     });
-    const { services } = useAppContext();
     const [_page, _setPage] = useState<number>(1);
     const setCurrentFunction = useStore((state: any) => state.setCurrentFunction);
+    const services = useStore(state => state.services);
 
     useEffect(() => {
         setCurrentFunction(t("Header.Subtitle"));

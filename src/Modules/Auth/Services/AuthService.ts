@@ -25,8 +25,7 @@ export class AuthService extends BaseService implements IAuthService {
     }
 
     isAuthenticated(): boolean {
-        // return this._getToken() !== null;
-        return true
+        return this._getToken() !== null;
     }
 
     getAuthenticatedUser(): IUser | null {
@@ -35,7 +34,15 @@ export class AuthService extends BaseService implements IAuthService {
     }
 
     async login(data: ILoginViewModel): Promise<IUser | null> {
-        let response = await this._helpers.HttpClient.post<ISignInResponseData>(ApiConfig.Auth.Login, data);
+        // let response = await this._helpers.HttpClient.post<ISignInResponseData>(ApiConfig.Auth.Login, data);
+        let response = {
+            data: {
+                token: 'fake token',
+                username: 'chungps',
+                email: '',
+                roles: []
+            }
+        };
 
         if (response.data.token) {
             let loggedUser: IUser = {

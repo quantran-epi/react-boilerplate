@@ -1,4 +1,4 @@
-import Common from './common.json';
+import Common from './Common.json';
 import CreditCardDebtCollectionChecker from "./CreditCardDebtCollectionChecker.json";
 import CreditCardDebtCollectionMaker from "./CreditCardDebtCollectionMaker.json";
 
