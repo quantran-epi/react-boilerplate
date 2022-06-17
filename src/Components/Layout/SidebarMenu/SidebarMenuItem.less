@@ -3,8 +3,22 @@
     display: block;
     // border-radius: 10px 0 0 10px;
 
-    &.expanded {
+    &:hover {
 
+        &:not(.selected):not(.open) {
+            background-color: @primary-fade;
+
+            &::after {
+                box-shadow: 0 25px 0 0 @primary-fade;
+            }
+
+            &::before {
+                box-shadow: 0 -25px 0 0 @primary-fade;
+            }
+        }
+    }
+
+    &.expanded {
         &.open {
             background-color: transparent;
 
@@ -72,7 +86,6 @@
         width: 20px;
         height: 40px;
         border-radius: 0 0 25px 0;
-        // background-color: red;
     }
 
     &::before {

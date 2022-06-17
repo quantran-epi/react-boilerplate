@@ -32,12 +32,22 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     hasChildren = false,
     onClick,
 }) => {
-    const _modeStyle = (): React.CSSProperties => {
+    const _containerModeStyle = (): React.CSSProperties => {
         switch (mode) {
             case "collapsed": return {
-                padding: "15px 0",
                 borderTopLeftRadius: 30,
                 borderBottomLeftRadius: 30
+            }
+            case "expanded": return {}
+            default: return {}
+        }
+    }
+
+    const _buttonModeStyle = (): React.CSSProperties => {
+        switch (mode) {
+            case "collapsed": return {
+                // padding: "15px 0",
+                height: 60
             }
             case "expanded": return {}
             default: return {}
@@ -53,7 +63,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     const _selectedStyle = (): React.CSSProperties => {
         return {
             ..._openedStyle(),
-            backgroundColor: AppColor.primaryFade,
+            backgroundColor: mode === "collapsed" ? "#fff" : AppColor.primaryFade,
             borderRight: "4px solid " + AppColor.primary
         }
     }
@@ -61,7 +71,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     const _containerStyle = (): React.CSSProperties => {
         return {
             marginRight: -0.8,
-            ..._modeStyle(),
+            ..._containerModeStyle(),
             ...open ? _openedStyle() : {},
             ...selected ? _selectedStyle() : {},
             ...data.parent !== undefined ? { paddingLeft: 25 } : {}
@@ -72,6 +82,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
         return {
             height: SIDEBAR_ITEM_HEIGHT,
             textAlign: "left",
+            ..._buttonModeStyle()
         }
     }
 
