@@ -40,21 +40,21 @@ export const SidebarConfig: ISidebarConfig = {
                 },
             ]
         },
-        {
-            label: "Thẻ tín dụng",
-            key: "2",
-            children: [
-                {
-                    label: "Tạo file thu nợ từ Intellect",
-                    key: "2.1",
-                    href: "dadad",
-                },
-                {
-                    label: "Duyệt file thu nợ từ Intellect",
-                    key: "2.2",
-                    href: "dawefwfwe",
-                },
-            ]
-        }
+        // {
+        //     label: "Thẻ tín dụng",
+        //     key: "2",
+        //     children: [
+        //         {
+        //             label: "Tạo file thu nợ từ Intellect",
+        //             key: "2.1",
+        //             href: "dadad",
+        //         },
+        //         {
+        //             label: "Duyệt file thu nợ từ Intellect",
+        //             key: "2.2",
+        //             href: "dawefwfwe",
+        //         },
+        //     ]
+        // }
     ]
 }

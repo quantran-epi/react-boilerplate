@@ -37,7 +37,6 @@ export const SidebarWidget = () => {
             }
         };
     }
-debugger
     const _menuItems = useMemo<MenuItem[]>(() => {
         return sideBarItems.map(_getMenuItemRecursive);
     }, [sideBarItems, openItems])

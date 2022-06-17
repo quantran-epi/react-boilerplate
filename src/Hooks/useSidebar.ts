@@ -73,7 +73,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
     const _flatten = (array: ISidebarItem[], result: ISidebarItem[]) => {
         array.forEach(function (el) {
-            if (el.children) {
+            if (el.children && el.children.length > 0) {
                 _flatten(el.children, result);
             } else {
                 result.push(el);
@@ -87,7 +87,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
         let flattenedItems = [] as ISidebarItem[];
         _flatten(_sideBarItems, flattenedItems);
-        return flattenedItems.filter(item => _isMatch(item.label));
+        return flattenedItems.filter(item => _isMatch(item.label)).map(e => ({ ...e, level: 0 })); // convert all to level 0
     }
 
     return {
