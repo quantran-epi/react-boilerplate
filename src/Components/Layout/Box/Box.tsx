@@ -5,13 +5,17 @@ interface IBoxProps {
     height?: string | number;
     style?: React.CSSProperties;
     children?: React.ReactNode;
+    className?: string;
+    onClick?: () => void;
 }
 
 export const Box: FunctionComponent<IBoxProps> = ({
     width,
     height,
     style,
-    children
+    children,
+    className,
+    onClick
 }) => {
     const _style = (): React.CSSProperties => {
         let o: React.CSSProperties = {};
@@ -24,7 +28,7 @@ export const Box: FunctionComponent<IBoxProps> = ({
         }
     }
 
-    return <div style={_style()}>
+    return <div style={_style()} className={className} onClick={onClick}>
         {children}
     </div>
 }

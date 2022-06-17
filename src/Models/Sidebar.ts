@@ -5,4 +5,5 @@ export interface ISidebarItem {
     icon?: string;
     selected?: boolean;
     children?: ISidebarItem[];
+    parent?: ISidebarItem;
 }

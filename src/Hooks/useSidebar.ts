@@ -16,13 +16,20 @@ interface IUseSidebar {
 }
 
 interface IUseSidebarProps {
-
+    mode: "single" | "multiple";
 }
 
 export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
+
+    const _transformSidebarItems = (items: ISidebarItem[], parent?: ISidebarItem): ISidebarItem[] => {
+        return items.map(item => {
+            return { ...item, parent: parent, children: _transformSidebarItems(item.children || [], item) };
+        })
+    }
+
     const location = useLocation();
     const [_openItems, _setOpenItems] = useState<string[]>([]);
-    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(SidebarConfig.items);
+    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(SidebarConfig.items, undefined));
     const [_searchText, _setSearchText] = useState<string>("");
 
     useEffect(() => {
@@ -53,7 +60,8 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
     }
 
     const _addOpenItem = (key: string) => {
-        _setOpenItems([..._openItems, key]);
+        if (props?.mode === "single") _setOpenItems([key]);
+        else _setOpenItems([..._openItems, key]);
     }
 
     const _removeOpenItem = (key: string) => {

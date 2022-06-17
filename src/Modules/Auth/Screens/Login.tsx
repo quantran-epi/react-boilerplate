@@ -139,7 +139,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     <Space>
                         {t("Common:TopNavigation.AppName").split(' ').map((e, i) =>
                             <span key={e.concat(i.toString())} style={{
-                                animation: `fade-in 0.8s 0.${i + 1}s forwards cubic-bezier(0.11, 0, 0.5, 0)`
+                                animation: `fade-in 0.3s 0.${i + 1}s forwards cubic-bezier(0.11, 0, 0.5, 0)`
                             }}>{e}</span>
                         )}
                     </Space>
@@ -157,7 +157,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     <Space>
                         {t("Common:TopNavigation.AppNameAbbr").split(' ').map((e, i) =>
                             <span key={e.concat(i.toString())} style={{
-                                animation: `fade-in 0.8s 1.${i + 1}s forwards cubic-bezier(0.11, 0, 0.5, 0)`
+                                animation: `fade-in 0.3s 1.${i + 1}s forwards cubic-bezier(0.11, 0, 0.5, 0)`
                             }}>{e}</span>
                         )}
                     </Space>

@@ -1,0 +1,1 @@
+export const SIDEBAR_ITEM_HEIGHT = 40;

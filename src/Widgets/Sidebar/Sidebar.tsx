@@ -1,32 +1,30 @@
-import {
-    CaretLeftOutlined, CreditCardFilled, SearchOutlined
-} from '@ant-design/icons';
+import { CreditCardFilled, DoubleLeftOutlined, DoubleRightOutlined, SearchOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
-import { Sidebar } from '@components/Layout/Sidebar';
-import { Space } from '@components/Layout/Space';
-import { Typography } from '@components/Typography';
-import { Form } from '@components/Form';
-import { useSidebar } from '@hooks';
-import { ISidebarItem } from '@models/Sidebar';
-import { Menu, MenuProps } from 'antd';
-import React, { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Button } from '@components/Button';
 import { Input } from '@components/Form/Input';
 import { Box } from '@components/Layout/Box';
+import { Sidebar } from '@components/Layout/Sidebar';
+import { SidebarMenu } from '@components/Layout/SidebarMenu';
+import { Space } from '@components/Layout/Space';
+import { Stack } from '@components/Layout/Stack';
+import { Typography } from '@components/Typography';
+import { useSidebar } from '@hooks';
+import { ISidebarItem } from '@models/Sidebar';
+import { MenuProps } from 'antd';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 export const SidebarWidget = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const { sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText } = useSidebar();
+    const { sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText } = useSidebar({ mode: "single" });
     const navigate = useNavigate();
     const { t } = useTranslation("Common");
-
     const _handleMenuItemClick = (item: ISidebarItem) => {
         if (item.href) navigate(item.href);
     }
-
     const _getMenuItemRecursive = (item: ISidebarItem): MenuItem => {
         return {
             label: item.label,
@@ -54,35 +52,44 @@ export const SidebarWidget = () => {
     }
 
     return <Sidebar
-        trigger={<CaretLeftOutlined />}
-        width={280}
+        collapsible
+        width={320}
+        trigger={null}
         collapsed={collapsed}
         onCollapse={value => setCollapsed(value)}
         style={{ backgroundColor: "#fff" }}>
-        <Space direction="vertical" size={"middle"} style={{ padding: 20 }}>
-            <Space>
+        <Stack direction="row" justify={collapsed ? "center" : "space-between"} style={{ padding: 20, width: "100%" }}>
+            {!collapsed && <Space>
                 <CreditCardFilled style={{ fontSize: 28, color: AppColor.primary }} />
-                {/* <Typography.Title level={5} style={{ margin: 0, color: AppColor.primary, fontFamily: "Fira Sans" }}>{t("TopNavigation.AppNameAbbr")}</Typography.Title> */}
                 <Space size={6}>
                     {_highlightFirstCharacter(t("TopNavigation.AppNameAbbr"))}
                 </Space>
-            </Space>
-            {/* <Typography.Title level={5} type="secondary" style={{ margin: 0 }}>{t("TopNavigation.AppName")}</Typography.Title> */}
-        </Space>
-        <Box style={{ padding: "0 20px 20px 20px" }}>
+            </Space>}
+            {collapsed && <Button style={{ padding: 0 }} type='link' onClick={() => setCollapsed(false)}><DoubleRightOutlined /></Button>}
+            {!collapsed && <Button style={{ padding: 0 }} type='link' onClick={() => setCollapsed(true)}><DoubleLeftOutlined /></Button>}
+        </Stack>
+        {!collapsed && <Box style={{ padding: "0 20px 20px 20px" }}>
             <Input
                 autoFocus
                 prefix={<SearchOutlined />}
                 placeholder="Search"
                 value={searchText}
                 onChange={e => onChangeSearchText(e.target.value)} />
-        </Box>
-        <Menu
+        </Box>}
+        <SidebarMenu
+            selectMode="single"
+            items={sideBarItems}
+            openKeys={openItems}
+            selectedKeys={selectedItems}
+            onOpenChanged={setOpenItems}
+            collapsed={collapsed}
+            onItemClick={_handleMenuItemClick} />
+        {/* <Menu
             theme="light"
             mode="inline"
             items={_menuItems}
             openKeys={openItems}
             selectedKeys={selectedItems}
-            onOpenChange={setOpenItems} />
+            onOpenChange={setOpenItems} /> */}
     </Sidebar >
 }
