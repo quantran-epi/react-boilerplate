@@ -74,7 +74,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
             ..._containerModeStyle(),
             ...open ? _openedStyle() : {},
             ...selected ? _selectedStyle() : {},
-            ...data.parent !== undefined ? { paddingLeft: 25 } : {}
+            ...data.parent !== undefined ? { paddingLeft: (data.level !== undefined ? data.level : 0) * 25 } : {}
         }
     }
 

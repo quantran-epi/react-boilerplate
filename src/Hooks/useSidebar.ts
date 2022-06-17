@@ -1,8 +1,8 @@
 import { SidebarConfig } from "@configs/SidebarConfig";
+import { ISidebarItem } from "@models/Sidebar";
+import { uniq } from 'lodash';
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
-import { debounce, flatMapDeep, map, uniq } from 'lodash';
-import { ISidebarItem } from "@models/Sidebar";
 
 interface IUseSidebar {
     sideBarItems: ISidebarItem[];
@@ -21,15 +21,15 @@ interface IUseSidebarProps {
 
 export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
-    const _transformSidebarItems = (items: ISidebarItem[], parent?: ISidebarItem): ISidebarItem[] => {
+    const _transformSidebarItems = (items: ISidebarItem[], level: number, parent?: ISidebarItem): ISidebarItem[] => {
         return items.map(item => {
-            return { ...item, parent: parent, children: _transformSidebarItems(item.children || [], item) };
+            return { ...item, level: level, parent: parent, children: _transformSidebarItems(item.children || [], level + 1, item) };
         })
     }
 
     const location = useLocation();
     const [_openItems, _setOpenItems] = useState<string[]>([]);
-    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(SidebarConfig.items, undefined));
+    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(SidebarConfig.items, 0, undefined));
     const [_searchText, _setSearchText] = useState<string>("");
 
     useEffect(() => {

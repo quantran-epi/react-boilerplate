@@ -27,7 +27,7 @@ export const SidebarConfig: ISidebarConfig = {
                     // href: RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
                     children: [
                         {
-                            label: "Tạo file thu nợ từ Intellectdada",
+                            label: "Tạo file thu nợ từ Intellect",
                             key: "1.2.1",
                             href: '222',
                         },
