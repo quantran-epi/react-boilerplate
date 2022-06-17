@@ -114,7 +114,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
                 align="stretch"
                 style={{
                     backgroundColor: "#fafafa",
-                    height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
+                    // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
                 }}
                 gap={0}>
                 {children}

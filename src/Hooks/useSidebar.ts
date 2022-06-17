@@ -60,8 +60,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
     }
 
     const _addOpenItem = (key: string) => {
-        if (props?.mode === "single") _setOpenItems([key]);
-        else _setOpenItems([..._openItems, key]);
+        _setOpenItems([..._openItems, key]);
     }
 
     const _removeOpenItem = (key: string) => {

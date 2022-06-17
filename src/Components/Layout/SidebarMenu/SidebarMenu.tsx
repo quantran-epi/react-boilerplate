@@ -36,12 +36,11 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
 
     const _openItem = (key: string) => {
         if (!onOpenChanged) return;
-        if (selectMode === "single") onOpenChanged([key]);
-        else onOpenChanged([...openKeys, key]);
+        onOpenChanged([...openKeys, key]);
     }
 
     const _closeItem = (key: string) => {
-        if (onOpenChanged) onOpenChanged(openKeys.filter(key => key !== key));
+        if (onOpenChanged) onOpenChanged(openKeys.filter(k => k !== key));
     }
 
     const _hasChildren = (item: ISidebarItem): boolean => {
@@ -57,6 +56,7 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
     }
 
     const _onItemClick = (item: ISidebarItem) => {
+        debugger
         if (!_hasChildren(item)) {
             onItemClick(item);
             return;

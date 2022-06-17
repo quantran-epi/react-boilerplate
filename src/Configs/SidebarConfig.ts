@@ -24,7 +24,19 @@ export const SidebarConfig: ISidebarConfig = {
                 {
                     label: "Duyệt file thu nợ từ Intellect",
                     key: "1.2",
-                    href: RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
+                    // href: RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker,
+                    children: [
+                        {
+                            label: "Tạo file thu nợ từ Intellectdada",
+                            key: "1.2.1",
+                            href: '222',
+                        },
+                        {
+                            label: "Duyệt file thu nợ từ Intellect",
+                            key: "1.2.2",
+                            href: "111",
+                        },
+                    ]
                 },
             ]
         },
