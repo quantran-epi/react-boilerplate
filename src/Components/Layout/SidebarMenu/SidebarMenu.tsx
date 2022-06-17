@@ -63,7 +63,7 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
 
         if (item.level === 0) {
             if (_isOpen(item.key)) _closeItem(item.key);
-            else if (onOpenChanged) onOpenChanged([item.key])
+            else if (onOpenChanged) onOpenChanged([item.key]);
         }
         else {
             if (_isOpen(item.key)) _closeItem(item.key);

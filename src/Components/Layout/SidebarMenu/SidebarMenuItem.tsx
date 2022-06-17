@@ -1,4 +1,4 @@
-import { CaretDownOutlined, CaretUpOutlined, YoutubeOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, CaretUpOutlined, YoutubeOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
 import { Button } from "@components/Button";
 import { Typography } from "@components/Typography";
@@ -64,17 +64,17 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
         return {
             ..._openedStyle(),
             backgroundColor: mode === "collapsed" ? "#fff" : AppColor.primaryFade,
-            borderRight: "4px solid " + AppColor.primary
+            borderRight: "6px solid " + AppColor.primary
         }
     }
 
     const _containerStyle = (): React.CSSProperties => {
         return {
-            marginRight: -0.8,
+            marginRight: -3,
             ..._containerModeStyle(),
             ...open ? _openedStyle() : {},
             ...selected ? _selectedStyle() : {},
-            ...data.parent !== undefined ? { paddingLeft: (data.level !== undefined ? data.level : 0) * 25 } : {}
+            ...data.parent !== undefined ? { paddingLeft: (mode === "expanded" && data.level !== undefined ? data.level : 0) * 25 } : {}
         }
     }
 
@@ -100,20 +100,40 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
                                 marginLeft: mode === "collapsed" ? 5 : 0,
                                 marginTop: mode === "expanded" ? 3 : 0
                             }} />
-                        {mode === "expanded" && <Typography.Text>{data.label}</Typography.Text>}
+                        {(mode === "expanded" || (mode === "collapsed" && data.level !== 0)) && <Typography.Text>{data.label}</Typography.Text>}
                     </Space>
                     {hasChildren && mode === "expanded" && (open ? <CaretUpOutlined /> : <CaretDownOutlined />)}
+                    {hasChildren && mode === "collapsed" && data.level !== 0 && <CaretRightOutlined />}
                 </Stack>
             </Button>
         </Box>
 
         {open && mode === "expanded"
             && <Stack
-                className="sidebar-submenu"
+                className={classNames("sidebar-submenu", "expanded")}
                 direction="column"
                 align="stretch"
                 style={{
                     backgroundColor: "#fafafa",
+                    // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
+                }}
+                gap={0}>
+                {children}
+            </Stack>}
+        {open && mode === "collapsed"
+            && <Stack
+                className={classNames("sidebar-submenu", "collapsed")}
+                direction="column"
+                align="stretch"
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: "100%",
+                    height: "100%",
+                    backgroundColor: "#fafafa",
+                    width: 300,
+                    zIndex: 99999,
+                    paddingLeft: 15,
                     // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
                 }}
                 gap={0}>
