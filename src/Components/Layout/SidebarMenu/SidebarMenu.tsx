@@ -56,14 +56,19 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
     }
 
     const _onItemClick = (item: ISidebarItem) => {
-        debugger
         if (!_hasChildren(item)) {
             onItemClick(item);
             return;
         }
 
-        if (_isOpen(item.key)) _closeItem(item.key);
-        else _openItem(item.key);
+        if (item.level === 0) {
+            if (_isOpen(item.key)) _closeItem(item.key);
+            else if (onOpenChanged) onOpenChanged([item.key])
+        }
+        else {
+            if (_isOpen(item.key)) _closeItem(item.key);
+            else _openItem(item.key);
+        }
     }
 
     const _renderItem = (item: ISidebarItem) => {
