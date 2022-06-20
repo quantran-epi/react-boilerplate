@@ -29,7 +29,7 @@ export const AuthorizedRouter = () => {
                     <Content
                         className="site-layout-background"
                         style={{
-                            minHeight: 280,
+                            minHeight: "100%",
                         }}>
                         <HeaderWidget />
                         <Outlet />

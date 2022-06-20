@@ -1,4 +1,4 @@
-import { CaretDownOutlined, CaretUpOutlined, YoutubeOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, CaretUpOutlined, PieChartOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
 import { Button } from "@components/Button";
 import { Typography } from "@components/Typography";
@@ -94,7 +94,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
             <Button type="link" block onClick={onClick} style={_buttonStyle()}>
                 <Stack align="center" justify="space-between" gap={12} direction="row">
                     <Space>
-                        <YoutubeOutlined
+                        <PieChartOutlined
                             style={{
                                 fontSize: 24,
                                 marginLeft: mode === "collapsed" ? 5 : 0,

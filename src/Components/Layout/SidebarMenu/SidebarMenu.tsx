@@ -29,8 +29,8 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
         return {
             paddingLeft: collapsed ? 10 : 0,
             width: "100%",
-            height: "100%",
-            overflowY: "auto"
+            overflowY: "auto",
+            flex: 1
         }
     }
 
