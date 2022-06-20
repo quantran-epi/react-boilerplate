@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Layout as AntLayout, SiderProps as AntSiderProps } from 'antd';
+import './Sidebar.less';
 
 const { Sider: AntSider } = AntLayout;
 

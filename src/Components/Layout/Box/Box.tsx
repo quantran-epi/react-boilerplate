@@ -9,14 +9,14 @@ interface IBoxProps {
     onClick?: () => void;
 }
 
-export const Box: FunctionComponent<IBoxProps> = ({
+export const Box = React.forwardRef<HTMLDivElement, IBoxProps>(({
     width,
     height,
     style,
     children,
     className,
     onClick
-}) => {
+}, ref) => {
     const _style = (): React.CSSProperties => {
         let o: React.CSSProperties = {};
 
@@ -28,7 +28,7 @@ export const Box: FunctionComponent<IBoxProps> = ({
         }
     }
 
-    return <div style={_style()} className={className} onClick={onClick}>
+    return <div ref={ref} style={_style()} className={className} onClick={onClick}>
         {children}
     </div>
-}
+})

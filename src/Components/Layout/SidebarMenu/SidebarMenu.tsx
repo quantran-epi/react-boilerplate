@@ -30,7 +30,7 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
             paddingLeft: collapsed ? 10 : 0,
             width: "100%",
             overflowY: "auto",
-            flex: 1
+            flex: 1,
         }
     }
 
@@ -71,14 +71,21 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
         }
     }
 
+    const _onClose = (item: ISidebarItem) => {
+        if (!openKeys.includes(item.key)) return;
+        if (onOpenChanged) onOpenChanged(openKeys.filter(key => key !== item.key));
+    }
+
     const _renderItem = (item: ISidebarItem) => {
         return <SidebarMenuItem
+            key={item.key}
             onClick={() => _onItemClick(item)}
             hasChildren={_hasChildren(item)}
             open={_isOpen(item.key)}
             selected={_isSelected(item.key)}
             mode={collapsed ? "collapsed" : "expanded"}
-            data={item}>
+            data={item}
+            onClose={_onClose}>
             {item.children?.map(_renderItem)}
         </SidebarMenuItem>
     }

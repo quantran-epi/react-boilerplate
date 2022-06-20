@@ -1,11 +1,13 @@
 import { CaretDownOutlined, CaretUpOutlined, PieChartOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
+import { AppShadow } from '@common/Constants/Shadow';
 import { Button } from "@components/Button";
+import { OutsideClick } from '@components/OutsideClick';
 import { Typography } from "@components/Typography";
 import { ISidebarItem } from "@models/Sidebar";
 import 'animate.css';
 import classNames from "classnames";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { Box } from "../Box";
 import { Space } from "../Space";
 import { Stack } from "../Stack";
@@ -21,6 +23,7 @@ interface ISidebarMenuItemProps {
     hasChildren?: boolean;
     selected?: boolean;
     onClick?: () => void;
+    onClose?: (item: ISidebarItem) => void;
 }
 
 export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
@@ -31,6 +34,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     selected = false,
     hasChildren = false,
     onClick,
+    onClose
 }) => {
     const _containerModeStyle = (): React.CSSProperties => {
         switch (mode) {
@@ -86,58 +90,66 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
         }
     }
 
-    return <Stack direction="column" align="stretch" gap={0}>
-        <Box
-            style={_containerStyle()}
-            className={classNames("sidebar-menu-item-wrapper",
-                { "open": open, "selected": selected, "expanded": mode === "expanded" })}>
-            <Button type="link" block onClick={onClick} style={_buttonStyle()}>
-                <Stack align="center" justify="space-between" gap={12} direction="row">
-                    <Space>
-                        <PieChartOutlined
-                            style={{
-                                fontSize: 24,
-                                marginLeft: mode === "collapsed" ? 5 : 0,
-                                marginTop: mode === "expanded" ? 3 : 0
-                            }} />
-                        {(mode === "expanded" || (mode === "collapsed" && data.level !== 0)) && <Typography.Text>{data.label}</Typography.Text>}
-                    </Space>
-                    {hasChildren && mode === "expanded" && (open ? <CaretUpOutlined /> : <CaretDownOutlined />)}
-                    {hasChildren && mode === "collapsed" && data.level !== 0 && <CaretRightOutlined />}
-                </Stack>
-            </Button>
-        </Box>
+    const _onCloseMenuOnClickOutside = () => {
+        if (!onClose) return;
+        onClose(data);
+    }
 
-        {open && mode === "expanded"
-            && <Stack
-                className={classNames("sidebar-submenu", "expanded")}
-                direction="column"
-                align="stretch"
-                style={{
-                    backgroundColor: "#fafafa",
-                    // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
-                }}
-                gap={0}>
-                {children}
-            </Stack>}
-        {open && mode === "collapsed"
-            && <Stack
-                className={classNames("sidebar-submenu", "collapsed")}
-                direction="column"
-                align="stretch"
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "100%",
-                    height: "100%",
-                    backgroundColor: "#fafafa",
-                    width: 300,
-                    zIndex: 99999,
-                    paddingLeft: 15,
-                    // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
-                }}
-                gap={0}>
-                {children}
-            </Stack>}
-    </Stack>
+    return <OutsideClick disabled={mode === "expanded" || data.level !== 0} onClickOutside={_onCloseMenuOnClickOutside}>
+        <Stack direction="column" align="stretch" gap={0}>
+            <Box
+                style={_containerStyle()}
+                className={classNames("sidebar-menu-item-wrapper",
+                    { "open": open, "selected": selected, "expanded": mode === "expanded" })}>
+                <Button type="link" block onClick={onClick} style={_buttonStyle()}>
+                    <Stack align="center" justify="space-between" gap={12} direction="row">
+                        <Space>
+                            <PieChartOutlined
+                                style={{
+                                    fontSize: 24,
+                                    marginLeft: mode === "collapsed" ? 5 : 0,
+                                    marginTop: mode === "expanded" ? 3 : 0
+                                }} />
+                            {(mode === "expanded" || (mode === "collapsed" && data.level !== 0)) && <Typography.Text>{data.label}</Typography.Text>}
+                        </Space>
+                        {hasChildren && mode === "expanded" && (open ? <CaretUpOutlined /> : <CaretDownOutlined />)}
+                        {hasChildren && mode === "collapsed" && data.level !== 0 && <CaretRightOutlined />}
+                    </Stack>
+                </Button>
+            </Box>
+
+            {open && mode === "expanded"
+                && <Stack
+                    className={classNames("sidebar-submenu", "expanded")}
+                    direction="column"
+                    align="stretch"
+                    style={{
+                        backgroundColor: "#fafafa",
+                        // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
+                    }}
+                    gap={0}>
+                    {children}
+                </Stack>}
+            {open && mode === "collapsed"
+                && <Stack
+                    className={classNames("sidebar-submenu", "collapsed")}
+                    direction="column"
+                    align="stretch"
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: "100%",
+                        height: "100%",
+                        backgroundColor: "#fafafa",
+                        width: 300,
+                        zIndex: 99999,
+                        paddingLeft: 15,
+                        // height: data.children ? data.children.length * SIDEBAR_ITEM_HEIGHT : "auto",
+                        boxShadow: AppShadow.card
+                    }}
+                    gap={0}>
+                    {children}
+                </Stack>}
+        </Stack>
+    </OutsideClick>
 }
