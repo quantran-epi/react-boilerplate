@@ -10,7 +10,7 @@ export const SidebarConfig: ISidebarConfig = {
         {
             key: '0',
             label: "Home",
-            href: RootRoutes.AuthorizedRoutes.Root
+            href: RootRoutes.AuthorizedRoutes.Root,
         },
         {
             label: "Thẻ tín dụng",

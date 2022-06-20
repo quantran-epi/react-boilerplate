@@ -3,7 +3,7 @@ export interface ISidebarItem {
     href?: string;
     key: string;
     level?: number;
-    icon?: string;
+    icon?: React.ReactNode;
     selected?: boolean;
     children?: ISidebarItem[];
     parent?: ISidebarItem;

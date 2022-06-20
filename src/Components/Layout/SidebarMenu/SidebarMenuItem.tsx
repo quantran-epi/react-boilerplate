@@ -1,4 +1,4 @@
-import { CaretDownOutlined, CaretUpOutlined, PieChartOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, PieChartOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
 import { AppShadow } from '@common/Constants/Shadow';
 import { Button } from "@components/Button";
@@ -7,7 +7,7 @@ import { Typography } from "@components/Typography";
 import { ISidebarItem } from "@models/Sidebar";
 import 'animate.css';
 import classNames from "classnames";
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { Box } from "../Box";
 import { Space } from "../Space";
 import { Stack } from "../Stack";
@@ -36,6 +36,24 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     onClick,
     onClose
 }) => {
+    const _renderIcon = () => {
+        return <Box style={{
+            fontSize: 24,
+            marginLeft: mode === "collapsed" ? 5 : 0,
+            marginTop: mode === "expanded" ? 3 : 0
+        }}>
+            <PieChartOutlined />
+        </Box>
+        // return <Box style={{
+        //     fontSize: 24,
+        //     marginLeft: mode === "collapsed" ? 5 : 0,
+        //     marginTop: mode === "expanded" ? 3 : 0
+        // }}>
+        //     {(mode === "collapsed" && !data.icon && data.level === 0) ? <Typography.Title style={{ margin: 0 }} level={5}>{data.label.substring(0, 1)}</Typography.Title>
+        //         : data.icon}
+        // </Box>
+    }
+
     const _containerModeStyle = (): React.CSSProperties => {
         switch (mode) {
             case "collapsed": return {
@@ -104,12 +122,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
                 <Button type="link" block onClick={onClick} style={_buttonStyle()}>
                     <Stack align="center" justify="space-between" gap={12} direction="row">
                         <Space>
-                            <PieChartOutlined
-                                style={{
-                                    fontSize: 24,
-                                    marginLeft: mode === "collapsed" ? 5 : 0,
-                                    marginTop: mode === "expanded" ? 3 : 0
-                                }} />
+                            {_renderIcon()}
                             {(mode === "expanded" || (mode === "collapsed" && data.level !== 0)) && <Typography.Text>{data.label}</Typography.Text>}
                         </Space>
                         {hasChildren && mode === "expanded" && (open ? <CaretUpOutlined /> : <CaretDownOutlined />)}
