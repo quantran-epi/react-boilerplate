@@ -37,13 +37,12 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     onClose
 }) => {
     const _renderIcon = () => {
-        return <Box style={{
+        return <div style={{
             fontSize: 24,
             marginLeft: mode === "collapsed" ? 5 : 0,
-            marginTop: mode === "expanded" ? 3 : 0
         }}>
             <PieChartOutlined />
-        </Box>
+        </div>
         // return <Box style={{
         //     fontSize: 24,
         //     marginLeft: mode === "collapsed" ? 5 : 0,
@@ -104,6 +103,7 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
         return {
             height: SIDEBAR_ITEM_HEIGHT,
             textAlign: "left",
+            padding: "0 15px",
             ..._buttonModeStyle()
         }
     }
