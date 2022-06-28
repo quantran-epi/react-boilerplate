@@ -53,12 +53,10 @@ export const HeaderWidget: FunctionComponent<IHeaderWidgetProps> = ({
                             }
                         ]}
                     />} trigger={['click']}>
-                    <Button type="link" block style={{ height: "100%", padding: 0 }}>
-                        <Space>
-                            <Typography.Text>{services.Auth.getAuthenticatedUser()?.username}</Typography.Text>
-                            <Button shape="circle" icon={<UserOutlined />} size="large" />
-                        </Space>
-                    </Button>
+                    <Space size={0}>
+                        <Button type="text" style={{ paddingRight: 5, paddingLeft: 5}}><Typography.Text>{services.Auth.getAuthenticatedUser()?.username}</Typography.Text></Button>
+                        <Button shape="circle" icon={<UserOutlined />} size="large" />
+                    </Space>
                 </Dropdown>
             </Space>
         </Stack>

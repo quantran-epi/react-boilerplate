@@ -8,3 +8,5 @@ interface ISelectProps extends AntSelectProps {
 export const Select: FunctionComponent<ISelectProps> = (props) => {
     return <AntSelect {...props} />
 }
+
+export const Option = AntSelect.Option;

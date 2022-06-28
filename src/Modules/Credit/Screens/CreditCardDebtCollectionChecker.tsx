@@ -106,7 +106,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
                                 name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
                                 label={t("Search.Reversal")}>
                                 {/* dump */}
-                                <Select defaultValue="2">
+                                <Select>
                                     <Option value="">Tất cả</Option>
                                     <Option value="1">Item 1</Option>
                                     <Option value="2">

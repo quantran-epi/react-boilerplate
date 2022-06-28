@@ -20,7 +20,6 @@ export const AuthorizedRouter = () => {
         });
     }, [])
 
-
     return <React.Fragment>
         {services.Auth.isAuthenticated() && <Container>
             <Container>

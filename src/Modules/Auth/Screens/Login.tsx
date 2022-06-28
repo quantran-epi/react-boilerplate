@@ -35,7 +35,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
     const { t } = useTranslation();
     const { innerHeight, innerWidth, availHeight, availWidth } = useWindowDimension();
 
-    const _login = async (values: ILoginViewModel) => {debugger
+    const _login = async (values: ILoginViewModel) => {
         return await services.Auth.login(values);
     }
 

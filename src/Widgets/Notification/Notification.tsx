@@ -1,13 +1,11 @@
-import { Space } from "@components/Layout/Space";
-import React, { FunctionComponent } from "react";
 import { BellOutlined } from '@ant-design/icons';
-import { Dropdown } from "@components/Dropdown";
-import { Menu } from "@components/Menu";
-import { Button } from "@components/Button";
 import { AppShadow } from "@common/Constants/Shadow";
+import { Button } from "@components/Button";
+import { Dropdown } from "@components/Dropdown";
+import { Space } from "@components/Layout/Space";
+import { Menu } from "@components/Menu";
 import { Typography } from "@components/Typography";
-import { Divider } from "@components/Layout/Divider";
-import { Badge } from "@components/Badge";
+import { FunctionComponent } from "react";
 
 
 interface INotificationWidgetProps {

@@ -15,7 +15,6 @@ export const OutsideClick: FunctionComponent<IOutsideClickProps> = ({
     const boxRef = useRef<HTMLDivElement>(null);
 
     const _bodyClickEvent = (e: MouseEvent) => {
-        console.log('body click', e);
         if (!boxRef.current?.contains(e.target as Node))
             onClickOutside();
     }
