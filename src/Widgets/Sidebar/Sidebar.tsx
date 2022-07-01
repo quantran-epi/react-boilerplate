@@ -1,5 +1,6 @@
 import { CreditCardFilled, DoubleLeftOutlined, DoubleRightOutlined, SearchOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
+import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { Button } from '@components/Button';
 import { Input } from '@components/Form/Input';
 import { Box } from '@components/Layout/Box';
@@ -7,39 +8,34 @@ import { Sidebar } from '@components/Layout/Sidebar';
 import { SidebarMenu } from '@components/Layout/SidebarMenu';
 import { Space } from '@components/Layout/Space';
 import { Stack } from '@components/Layout/Stack';
+import { Spin } from '@components/Spin';
 import { Typography } from '@components/Typography';
 import { useSidebar } from '@hooks';
 import { ISidebarItem } from '@models/Sidebar';
-import { MenuProps } from 'antd';
-import { useMemo, useState } from 'react';
+import { useStore } from '@store';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-
-type MenuItem = Required<MenuProps>['items'][number];
 
 export const SidebarWidget = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const { sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText } = useSidebar({ mode: "single" });
+    const _services = useStore(store => store.services);
+    const { data, isFetching } = useQuery(AppQueryKeys['Sidebar.Menu'], {
+        queryFn: async (context) => {
+            return await _services.Auth.Menu.filter();
+        },
+        refetchOnWindowFocus: false,
+        staleTime: 1000 * 60 * 60 * 24 * 30
+    })
+    const {
+        sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText
+    } = useSidebar({ mode: "single", serverMenuItems: data || [] });
     const navigate = useNavigate();
     const { t } = useTranslation("Common");
     const _handleMenuItemClick = (item: ISidebarItem) => {
         if (item.href) navigate(item.href);
     }
-    const _getMenuItemRecursive = (item: ISidebarItem): MenuItem => {
-        return {
-            label: item.label,
-            key: item.key,
-            icon: item.icon,
-            onClick: () => _handleMenuItemClick(item),
-            children: item.children ? item.children.map(_getMenuItemRecursive) : undefined,
-            style: {
-                fontWeight: openItems.includes(item.key) ? "bold" : "normal"
-            }
-        };
-    }
-    const _menuItems = useMemo<MenuItem[]>(() => {
-        return sideBarItems.map(_getMenuItemRecursive);
-    }, [sideBarItems, openItems])
 
     const _highlightFirstCharacter = (text: string) => {
         return text.toUpperCase().split(' ').map((word, index) => {
@@ -75,14 +71,16 @@ export const SidebarWidget = () => {
                 value={searchText}
                 onChange={e => onChangeSearchText(e.target.value)} />
         </Box>}
-        <SidebarMenu
-            selectMode="single"
-            items={sideBarItems}
-            openKeys={openItems}
-            selectedKeys={selectedItems}
-            onOpenChanged={setOpenItems}
-            collapsed={collapsed}
-            onItemClick={_handleMenuItemClick} />
+        <Spin spinning={isFetching}>
+            <SidebarMenu
+                selectMode="single"
+                items={sideBarItems}
+                openKeys={openItems}
+                selectedKeys={selectedItems}
+                onOpenChanged={setOpenItems}
+                collapsed={collapsed}
+                onItemClick={_handleMenuItemClick} />
+        </Spin>
         {/* <Menu
             theme="light"
             mode="inline"

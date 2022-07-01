@@ -4,7 +4,7 @@ interface IApiConfig {
         Login: string;
     },
     Authorized: {
-
+        Menu: string;
     }
 }
 
@@ -14,6 +14,6 @@ export const ApiConfig: IApiConfig = {
         Login: '/auth/signin',
     },
     Authorized: {
-
+        Menu: '/menu'
     }
 }

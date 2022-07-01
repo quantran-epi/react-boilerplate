@@ -1,5 +1,6 @@
 export interface IQueryResponse<TData> {
     status: number;
+    message: string;
     data: TData;
 }
 

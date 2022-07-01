@@ -26,7 +26,7 @@ export const HeaderWidget: FunctionComponent<IHeaderWidgetProps> = ({
     const navigate = useNavigate();
     const currentFunction = useStore((state: any) => state.currentFunction);
     const _onLogoutClick = () => {
-        services.Auth.logout();
+        services.Auth.Authentication.logout();
         navigate(RootRoutes.AuthRoutes.Login);
     }
 
@@ -54,7 +54,7 @@ export const HeaderWidget: FunctionComponent<IHeaderWidgetProps> = ({
                         ]}
                     />} trigger={['click']}>
                     <Space size={0}>
-                        <Button type="text" style={{ paddingRight: 5, paddingLeft: 5}}><Typography.Text>{services.Auth.getAuthenticatedUser()?.username}</Typography.Text></Button>
+                        <Button type="text" style={{ paddingRight: 5, paddingLeft: 5 }}><Typography.Text>{services.Auth.Authentication.getAuthenticatedUser()?.username}</Typography.Text></Button>
                         <Button shape="circle" icon={<UserOutlined />} size="large" />
                     </Space>
                 </Dropdown>

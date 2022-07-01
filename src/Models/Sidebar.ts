@@ -7,4 +7,5 @@ export interface ISidebarItem {
     selected?: boolean;
     children?: ISidebarItem[];
     parent?: ISidebarItem;
+    parentId?: string;
 }

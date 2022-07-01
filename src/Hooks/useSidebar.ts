@@ -1,4 +1,4 @@
-import { SidebarConfig } from "@configs/SidebarConfig";
+import { IServerMenuItem } from "@models/Server/ServerMenuItem";
 import { ISidebarItem } from "@models/Sidebar";
 import { uniq } from 'lodash';
 import { useEffect, useState } from "react";
@@ -17,9 +17,35 @@ interface IUseSidebar {
 
 interface IUseSidebarProps {
     mode: "single" | "multiple";
+    serverMenuItems: IServerMenuItem[];
 }
 
 export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
+
+    const _transformServerMenuItem = (): ISidebarItem[] => {
+        let serverMenuItems = props?.serverMenuItems.map<ISidebarItem>(e => ({
+            key: e.id.toString(),
+            label: e.title,
+            href: e.link || undefined,
+            parentId: e.parentId?.toString(),
+            children: []
+        })) || [];
+
+        function getChildren(sideBarItemId: string): any[] {
+            let children = serverMenuItems.filter(e => e.parentId === sideBarItemId);
+            if (children.length === 0) return [];
+
+            return children.map(child => ({
+                ...child,
+                children: getChildren(child.key)
+            }))
+        }
+
+        return serverMenuItems.map(e => ({
+            ...e,
+            children: getChildren(e.key)
+        }))
+    }
 
     const _transformSidebarItems = (items: ISidebarItem[], level: number, parent?: ISidebarItem): ISidebarItem[] => {
         return items.map(item => {
@@ -29,7 +55,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
     const location = useLocation();
     const [_openItems, _setOpenItems] = useState<string[]>([]);
-    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(SidebarConfig.items, 0, undefined));
+    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(_transformServerMenuItem(), 0, undefined));
     const [_searchText, _setSearchText] = useState<string>("");
 
     useEffect(() => {

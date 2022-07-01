@@ -33,10 +33,10 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
     const services = useStore(state => state.services);
     const location = useLocation();
     const { t } = useTranslation();
-    const { innerHeight, innerWidth, availHeight, availWidth } = useWindowDimension();
+    const { innerHeight, innerWidth, availWidth } = useWindowDimension();
 
     const _login = async (values: ILoginViewModel) => {
-        return await services.Auth.login(values);
+        return await services.Auth.Authentication.login(values);
     }
 
     const [form] = useForm<ILoginViewModel>();
@@ -82,7 +82,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                             name="login"
                             form={form}
                             layout="vertical"
-                            initialValues={{ username: "chungps", password: "Shb@2022" }}
+                            initialValues={{ username: "chungps", password: "Tham@1999" }}
                             onFinish={_onSubmit}
                             style={{ width: 300 }}>
                             <Form.Item

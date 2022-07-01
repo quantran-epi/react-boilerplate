@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.less';
 import { ErrorBoundary } from './ErrorBoundary';
+import { GlobalHandler } from './GlobalHandler';
 import { initI18n } from './I18n/init';
 
 const queryClient = new QueryClient()
@@ -15,6 +16,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
+        <GlobalHandler />
         <Helmet title={t("TopNavigation.AppName")} />
         <RootRouter />
       </ErrorBoundary>

@@ -1,3 +1,4 @@
+import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
@@ -36,7 +37,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
         }
     }, [])
 
-    const { data, isFetching, refetch } = useQuery(['Credit', 'CreditCardDebtCollection', 'Checker', _searchModel, _page], {
+    const { data, isFetching, refetch } = useQuery([AppQueryKeys['Credit.CreditCardDebtCollection.Checker'], _searchModel, _page], {
         queryFn: async (context) => {
             let data = await services.Credit.CreditCardDebtCollection
                 .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel,

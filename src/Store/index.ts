@@ -6,5 +6,5 @@ export * from './AppContext';
 export const useStore = create<IAppContext>((set) => ({
     services: RegisterServices(),
     currentFunction: "",
-    setCurrentFunction: (value: string) => set(state => ({ currentFunction: value }))
+    setCurrentFunction: (value: string) => set(state => ({ currentFunction: value })),
 }))

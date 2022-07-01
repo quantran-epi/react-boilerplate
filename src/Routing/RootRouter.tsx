@@ -5,7 +5,6 @@ import { CreditCardDebtCollectionCheckerScreen } from '@modules/Credit/Screens/C
 import { CreditCardDebtCollectionMakerScreen } from '@modules/Credit/Screens/CreditCardDebtCollectionMaker';
 import { ErrorScreen } from '@modules/Static/Error';
 import { NotFoundScreen } from '@modules/Static/NotFound';
-import React from 'react';
 import {
     BrowserRouter, Route, Routes
 } from "react-router-dom";
