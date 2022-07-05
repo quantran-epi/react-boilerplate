@@ -10,14 +10,14 @@ interface ISignInResponseData extends IQueryResponse<{
     user: IUser;
 }> { }
 
-export interface IAuthService {
+export interface IUserService {
     login: (data: ILoginViewModel) => Promise<IUser | null>;
     logout: () => Promise<boolean>;
     isAuthenticated: () => boolean;
     getAuthenticatedUser: () => IUser | null;
 }
 
-export class AuthService extends BaseService implements IAuthService {
+export class UserService extends BaseService implements IUserService {
     constructor(helpers: IServiceHelperCollection) {
         super(helpers);
     }

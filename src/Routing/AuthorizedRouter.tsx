@@ -16,7 +16,7 @@ export const AuthorizedRouter = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (!services.Auth.Authentication.isAuthenticated())
+        if (!services.Auth.User.isAuthenticated())
             navigate(RootRoutes.AuthRoutes.Login, {
                 state: {
                     returnUrl: location.pathname
@@ -28,7 +28,7 @@ export const AuthorizedRouter = () => {
     }, [])
 
     return <React.Fragment>
-        {services.Auth.Authentication.isAuthenticated() && <Container>
+        {services.Auth.User.isAuthenticated() && <Container>
             <Container>
                 <SidebarWidget />
                 <Container style={{ padding: 24 }}>
