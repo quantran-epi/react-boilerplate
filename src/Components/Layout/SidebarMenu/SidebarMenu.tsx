@@ -1,4 +1,5 @@
 import { AppColor } from "@common/Constants/AppColor";
+import { Spin } from "@components/Spin";
 import { ISidebarItem } from "@models/Sidebar";
 import React, { FunctionComponent, useState } from "react";
 import { Box } from "../Box";
@@ -7,6 +8,7 @@ import { SidebarMenuSelectMode } from "./SidebarMenu.types";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 
 interface ISidebarMenuProps {
+    fetching?: boolean;
     items: ISidebarItem[];
     openKeys?: string[];
     selectedKeys?: string[];
@@ -23,7 +25,8 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
     collapsed = false,
     selectMode = "single",
     onOpenChanged,
-    onItemClick
+    onItemClick,
+    fetching
 }) => {
     const _containerStyle = (): React.CSSProperties => {
         return {
@@ -91,6 +94,7 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
     }
 
     return <Space style={_containerStyle()} direction="vertical" size={0}>
+        {fetching && <Spin spinning style={{ width: '100%' }} />}
         {items.map(_renderItem)}
     </Space>
 }

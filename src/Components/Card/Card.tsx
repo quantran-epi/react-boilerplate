@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Card as AntCard, CardProps as AntCardProps } from 'antd';
-import { AppShadow } from '@common/Constants/Shadow';
+import { AppShadow } from '@common/Constants/AppShadow';
 
 interface ICardProps extends AntCardProps {
 

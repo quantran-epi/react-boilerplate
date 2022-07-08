@@ -1,6 +1,6 @@
 import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, PieChartOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
-import { AppShadow } from '@common/Constants/Shadow';
+import { AppShadow } from '@common/Constants/AppShadow';
 import { Button } from "@components/Button";
 import { OutsideClick } from '@components/OutsideClick';
 import { Typography } from "@components/Typography";
@@ -37,20 +37,14 @@ export const SidebarMenuItem: FunctionComponent<ISidebarMenuItemProps> = ({
     onClose
 }) => {
     const _renderIcon = () => {
-        return <div style={{
+        return <Stack style={{
             fontSize: 24,
             marginLeft: mode === "collapsed" ? 5 : 0,
+            alignItems: "center"
         }}>
-            <PieChartOutlined />
-        </div>
-        // return <Box style={{
-        //     fontSize: 24,
-        //     marginLeft: mode === "collapsed" ? 5 : 0,
-        //     marginTop: mode === "expanded" ? 3 : 0
-        // }}>
-        //     {(mode === "collapsed" && !data.icon && data.level === 0) ? <Typography.Title style={{ margin: 0 }} level={5}>{data.label.substring(0, 1)}</Typography.Title>
-        //         : data.icon}
-        // </Box>
+            {(mode === "collapsed" && !data.icon && data.level === 0) ? <Typography.Title style={{ margin: 0 }} level={5}>{data.label.substring(0, 1)}</Typography.Title>
+                : data.icon}
+        </Stack>
     }
 
     const _containerModeStyle = (): React.CSSProperties => {

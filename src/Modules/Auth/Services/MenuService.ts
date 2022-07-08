@@ -31,8 +31,7 @@ export class MenuService extends BaseService implements IMenuService {
         });
 
         let currentUser = this._getUserInfo();
-        return response.data.data.filter(menu =>
-            currentUser?.roles
-                .some(role => role.menu.map(e => e.id).includes(menu.id)));
+        return response.data.data.filter(menu => currentUser?.roles
+            .some(role => role.menu.map(e => e.id).includes(menu.id)));
     }
 }

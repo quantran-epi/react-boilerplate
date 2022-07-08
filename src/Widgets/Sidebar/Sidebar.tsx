@@ -8,7 +8,6 @@ import { Sidebar } from '@components/Layout/Sidebar';
 import { SidebarMenu } from '@components/Layout/SidebarMenu';
 import { Space } from '@components/Layout/Space';
 import { Stack } from '@components/Layout/Stack';
-import { Spin } from '@components/Spin';
 import { Typography } from '@components/Typography';
 import { useSidebar } from '@hooks';
 import { ISidebarItem } from '@models/Sidebar';
@@ -27,7 +26,7 @@ export const SidebarWidget = () => {
         },
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 60 * 24 * 30
-    })
+    });
     const {
         sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText
     } = useSidebar({ mode: "single", serverMenuItems: data || [] });
@@ -71,16 +70,15 @@ export const SidebarWidget = () => {
                 value={searchText}
                 onChange={e => onChangeSearchText(e.target.value)} />
         </Box>}
-        <Spin spinning={isFetching}>
-            <SidebarMenu
-                selectMode="single"
-                items={sideBarItems}
-                openKeys={openItems}
-                selectedKeys={selectedItems}
-                onOpenChanged={setOpenItems}
-                collapsed={collapsed}
-                onItemClick={_handleMenuItemClick} />
-        </Spin>
+        <SidebarMenu
+            fetching={isFetching}
+            selectMode="single"
+            items={sideBarItems}
+            openKeys={openItems}
+            selectedKeys={selectedItems}
+            onOpenChanged={setOpenItems}
+            collapsed={collapsed}
+            onItemClick={_handleMenuItemClick} />
         {/* <Menu
             theme="light"
             mode="inline"

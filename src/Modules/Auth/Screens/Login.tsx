@@ -127,7 +127,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     </Space>
                 </Card>
             </Center>
-            <Center style={{ position: "fixed", top: 0, bottom: 0, right: "15%", paddingBottom: 60 }}>
+            {/* <Center style={{ position: "fixed", top: 0, bottom: 0, right: "15%", paddingBottom: 60 }}>
                 <Typography.Title
                     level={2}
                     style={{
@@ -163,7 +163,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
                     </Space>
                 </Typography.Title>
 
-            </Center >
-        </div >
-    </Container >
+            </Center> */}
+        </div>
+    </Container>
 }

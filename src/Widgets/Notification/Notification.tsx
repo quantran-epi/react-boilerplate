@@ -1,12 +1,11 @@
 import { BellOutlined } from '@ant-design/icons';
-import { AppShadow } from "@common/Constants/Shadow";
+import { AppShadow } from "@common/Constants/AppShadow";
 import { Button } from "@components/Button";
 import { Dropdown } from "@components/Dropdown";
 import { Space } from "@components/Layout/Space";
 import { Menu } from "@components/Menu";
 import { Typography } from "@components/Typography";
 import { FunctionComponent } from "react";
-
 
 interface INotificationWidgetProps {
 

@@ -1,0 +1,123 @@
+{
+  "menu": {
+    "data": [
+      {
+        "id": 1,
+        "title": "Thẻ tín dụng",
+        "link": null,
+        "viewStatus": "1",
+        "parentId": null
+      },
+      {
+        "id": 2,
+        "title": "Tạo file thu nợ từ Intellect",
+        "link": "/credit/CreditCardDebtCollectionMaker",
+        "viewStatus": "1",
+        "parentId": 1
+      },
+      {
+        "id": 3,
+        "title": "Duyệt file thu nợ từ Intellect",
+        "link": "/credit/CreditCardDebtCollectionChecker",
+        "viewStatus": "1",
+        "parentId": 1
+      },
+      {
+        "id": 4,
+        "title": "Unauthorized 1",
+        "link": "/unauthoried1",
+        "viewStatus": "1",
+        "parentId": 1
+      },
+      {
+        "id": 5,
+        "title": "Unauthorized 2",
+        "link": "/unauthoried2",
+        "viewStatus": "1",
+        "parentId": null
+      }
+    ]
+  },
+  "role": {
+    "data": [
+      {
+        "id": 1,
+        "name": "Admin",
+        "description": null,
+        "createdBy": null,
+        "createdAt": null,
+        "modifiedAt": null,
+        "status": 1,
+        "menu": [
+          {
+            "id": 1,
+            "title": "Thẻ tín dụng",
+            "link": null,
+            "viewStatus": "1",
+            "parentId": null
+          },
+          {
+            "id": 2,
+            "title": "Tạo file thu nợ từ Intellect",
+            "link": "/credit/CreditCardDebtCollectionMaker",
+            "viewStatus": "1",
+            "parentId": 1
+          },
+          {
+            "id": 3,
+            "title": "Duyệt file thu nợ từ Intellect",
+            "link": "/credit/CreditCardDebtCollectionChecker",
+            "viewStatus": "1",
+            "parentId": 1
+          },
+          {
+            "id": 4,
+            "title": "Unauthorized 1",
+            "link": "/unauthoried1",
+            "viewStatus": "1",
+            "parentId": 1
+          },
+          {
+            "id": 5,
+            "title": "Unauthorized 2",
+            "link": "/unauthoried2",
+            "viewStatus": "1",
+            "parentId": null
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Credit Role",
+        "description": null,
+        "createdBy": null,
+        "createdAt": null,
+        "modifiedAt": null,
+        "status": 1,
+        "menu": [
+          {
+            "id": 1,
+            "title": "Thẻ tín dụng",
+            "link": null,
+            "viewStatus": "1",
+            "parentId": null
+          },
+          {
+            "id": 2,
+            "title": "Tạo file thu nợ từ Intellect",
+            "link": "/credit/CreditCardDebtCollectionMaker",
+            "viewStatus": "1",
+            "parentId": 1
+          },
+          {
+            "id": 3,
+            "title": "Duyệt file thu nợ từ Intellect",
+            "link": "/credit/CreditCardDebtCollectionChecker",
+            "viewStatus": "1",
+            "parentId": 1
+          }
+        ]
+      }
+    ]
+  }
+}

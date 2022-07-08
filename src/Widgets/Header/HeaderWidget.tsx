@@ -1,4 +1,4 @@
-import { AppShadow } from "@common/Constants/Shadow";
+import { AppShadow } from "@common/Constants/AppShadow";
 import { Button } from "@components/Button";
 import { Dropdown } from "@components/Dropdown";
 import { Header } from "@components/Layout/Header";

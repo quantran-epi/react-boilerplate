@@ -1,6 +1,6 @@
 import { IServerMenuItem } from "@models/Server/ServerMenuItem";
 import { ISidebarItem } from "@models/Sidebar";
-import { uniq } from 'lodash';
+import { transform, uniq } from 'lodash';
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
             }))
         }
 
-        return serverMenuItems.map(e => ({
+        return serverMenuItems.filter(e => !e.parentId).map(e => ({
             ...e,
             children: getChildren(e.key)
         }))
@@ -55,13 +55,17 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
     const location = useLocation();
     const [_openItems, _setOpenItems] = useState<string[]>([]);
-    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>(_transformSidebarItems(_transformServerMenuItem(), 0, undefined));
+    const [_sideBarItems, _setSideBarItems] = useState<ISidebarItem[]>([]);
     const [_searchText, _setSearchText] = useState<string>("");
+
+    useEffect(() => {
+        _setSideBarItems(_transformSidebarItems(_transformServerMenuItem(), 0, undefined));
+    }, [props?.serverMenuItems])
 
     useEffect(() => {
         let selectedItems = _selectedItems();
         _setOpenItems(uniq(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat()));
-    }, [location])
+    }, [location, _sideBarItems])
 
     const getParentOfSelected = (item: ISidebarItem, parent: string, selectedItems: string[]): string[] => {
         if (selectedItems.includes(item.key)) return [parent];
