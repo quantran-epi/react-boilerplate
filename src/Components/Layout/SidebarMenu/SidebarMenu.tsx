@@ -31,7 +31,7 @@ export const SidebarMenu: FunctionComponent<ISidebarMenuProps> = ({
     const _containerStyle = (): React.CSSProperties => {
         return {
             paddingLeft: collapsed ? 10 : 0,
-            width: "100%",
+            width: "100%",  
             overflowY: "auto",
             flex: 1,
         }

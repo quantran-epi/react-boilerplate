@@ -156,7 +156,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
                     dataSource={data?.data}
                     columns={columns}
                     pagination={{
-                        total: data?.totalItems,
+                        total: data?.pageable?.total,
                         onChange: (page: number) => _setPage(page),
                         showSizeChanger: false
                     }} />

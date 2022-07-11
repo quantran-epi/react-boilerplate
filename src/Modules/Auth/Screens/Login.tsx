@@ -36,7 +36,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
     const { innerHeight, innerWidth, availWidth } = useWindowDimension();
 
     const _login = async (values: ILoginViewModel) => {
-        return await services.Auth.User.login(values);
+        return await services.Auth.SignIn.login(values);
     }
 
     const [form] = useForm<ILoginViewModel>();

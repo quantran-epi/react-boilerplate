@@ -27,12 +27,14 @@ export class CreditCardDebtCollectionService extends BaseService implements ICre
                         column4: 'Row ' + (i + counter),
                         column5: 'Row ' + (i + counter),
                     })),
-                    page: page,
-                    pageSize: 10,
                     status: 200,
-                    totalItems: 100
+                    pageable: {
+                        page: page,
+                        size: 10,
+                        total: 100
+                    }
                 })
-            }, 1500)
+            }, 500)
         })
     }
 
@@ -50,12 +52,14 @@ export class CreditCardDebtCollectionService extends BaseService implements ICre
                         column4: 'Row ' + (i + counter),
                         column5: 'Row ' + (i + counter),
                     })),
-                    page: page,
-                    pageSize: 10,
                     status: 200,
-                    totalItems: 100
+                    pageable: {
+                        page: page,
+                        size: 10,
+                        total: 100
+                    }
                 })
-            }, 1500)
+            }, 500)
         })
     }
 
