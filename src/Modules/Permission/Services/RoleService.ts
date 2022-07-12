@@ -1,5 +1,6 @@
 import { ApiConfig } from "@configs/ApiConfig";
 import { IRole } from "@models/Role";
+import { RootRoutes } from "@routing/RootRoutes";
 import { BaseService, IServiceHelperCollection } from "@services/BaseService";
 import { IMutationResponse, IQueryResponse } from "@services/Types";
 
@@ -8,6 +9,7 @@ interface IFilterRoleResponseData extends IQueryResponse<IRole[]> {
 }
 
 export interface IRoleService {
+    isAuthorized: (location: string) => boolean;
     filter: () => Promise<IRole[]>;
     create: (param: Omit<IRole, "id">) => Promise<IMutationResponse<IRole>>;
     update: (param: Omit<IRole, "id">) => Promise<IMutationResponse<IRole>>;
@@ -18,6 +20,27 @@ export interface IRoleService {
 export class RoleService extends BaseService implements IRoleService {
     constructor(helpers: IServiceHelperCollection) {
         super(helpers);
+    }
+
+    private _isAnonymousRoutes = (location: string): boolean => {
+        return location === RootRoutes.AuthRoutes.Root || location === RootRoutes.AuthRoutes.Login;
+    }
+
+    private _isStaticRoutes = (location: string): boolean => {
+        return location === RootRoutes.StaticRoutes.Error
+            || location === RootRoutes.StaticRoutes.NotFound;
+    }
+
+    isAuthorized(location: string): boolean {
+        let user = this._getUserInfo();
+        if (!user) return false;
+
+        if (this._isAnonymousRoutes(location)
+            || location === RootRoutes.AuthorizedRoutes.Root
+            || this._isStaticRoutes(location)) return true;
+
+        let locationWithoutQueryString = location.substring(location.lastIndexOf('?'));
+        return user?.roles.some(role => role.menu.map(m => m.link).includes(locationWithoutQueryString)) || false;
     }
 
     async filter(): Promise<IRole[]> {

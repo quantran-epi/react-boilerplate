@@ -1,6 +1,5 @@
 import { CreditCardFilled, DoubleLeftOutlined, DoubleRightOutlined, SearchOutlined } from '@ant-design/icons';
 import { AppColor } from '@common/Constants/AppColor';
-import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { Button } from '@components/Button';
 import { Input } from '@components/Form/Input';
 import { Box } from '@components/Layout/Box';
@@ -11,6 +10,7 @@ import { Stack } from '@components/Layout/Stack';
 import { Typography } from '@components/Typography';
 import { useSidebar } from '@hooks';
 import { ISidebarItem } from '@models/Sidebar';
+import { QueryFactory } from '@queries';
 import { useStore } from '@store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 export const SidebarWidget = () => {
     const [collapsed, setCollapsed] = useState(false);
     const _services = useStore(store => store.services);
-    const { data, isFetching } = useQuery(AppQueryKeys['Sidebar.Menu'], {
+    const { data, isFetching } = useQuery(QueryFactory.Sidebar.Menu(), {
         queryFn: async (context) => {
             return await _services.Permission.Menu.filterAuthorized();
         },

@@ -11,10 +11,9 @@ export interface IServiceHelperCollection {
 }
 
 export class BaseService implements IBaseService {
-    _tokenKey: string = "usr_token";
-    _userInfoKey: string = "usr_info";
+    private _tokenKey: string = "usr_token";
+    private _userInfoKey: string = "usr_info";
     protected _helpers: IServiceHelperCollection;
-
 
     constructor(helpers: IServiceHelperCollection) {
         this._helpers = helpers;

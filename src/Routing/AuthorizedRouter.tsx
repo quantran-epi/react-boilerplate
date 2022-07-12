@@ -1,6 +1,6 @@
-import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { Container } from '@components/Layout/Container';
 import { Content } from '@components/Layout/Content';
+import { QueryFactory } from '@queries';
 import { useStore } from '@store';
 import { HeaderWidget } from "@widgets/Header";
 import { SidebarWidget } from '@widgets/Sidebar';
@@ -16,19 +16,23 @@ export const AuthorizedRouter = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (!services.Auth.SignIn.isAuthenticated())
+        if (!_isAccessible())
             navigate(RootRoutes.AuthRoutes.Login, {
                 state: {
                     returnUrl: location.pathname
                 }
             });
         else {
-            queryClient.refetchQueries(AppQueryKeys['Sidebar.Menu']);
+            queryClient.refetchQueries(QueryFactory.Sidebar.Menu());
         }
     }, [])
 
+    const _isAccessible = (): boolean => {
+        return services.Auth.SignIn.isAuthenticated() && services.Permission.Role.isAuthorized(location.pathname);
+    }
+
     return <React.Fragment>
-        {services.Auth.SignIn.isAuthenticated() && <Container>
+        {_isAccessible() && <Container>
             <Container>
                 <SidebarWidget />
                 <Container style={{ padding: 24 }}>

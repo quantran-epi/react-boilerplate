@@ -1,4 +1,3 @@
-import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
@@ -7,6 +6,7 @@ import { Form } from '@components/Form';
 import { Input } from '@components/Form/Input';
 import { Option, Select } from '@components/Form/Select';
 import { Col, Row } from '@components/Grid';
+import { QueryFactory } from '@queries';
 import { useStore } from '@store';
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
@@ -18,7 +18,7 @@ import { ICreditCardDebtCollectionMakerSearchViewModel } from '../ViewModels/ICr
 export const CreditCardDebtCollectionMakerScreen = () => {
     const { t } = useTranslation("Credit", { keyPrefix: "CreditCardDebtCollectionMaker" })
     const [form] = Form.useForm<ICreditCardDebtCollectionMakerSearchViewModel>();
-    const [_searchModel] = useState<ICreditCardDebtCollectionMakerSearchViewModel>({
+    const [_searchModel, _setSearchModel] = useState<ICreditCardDebtCollectionMakerSearchViewModel>({
         refNo: "",
         bin: "",
         reversal: "",
@@ -29,7 +29,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
     const [_page, _setPage] = useState<number>(1);
     const setCurrentFunction = useStore(state => state.setCurrentFunction);
 
-    const { data, isFetching, refetch } = useQuery([AppQueryKeys['Credit.CreditCardDebtCollection.Maker'], _searchModel, _page], {
+    const { data, isFetching } = useQuery(QueryFactory.Credit.CreditCardDebtCollection.Maker(_searchModel, _page), {
         queryFn: async (context) => {
             let data = await services.Credit.CreditCardDebtCollection
                 .searchMaker(context.queryKey[3] as ICreditCardDebtCollectionMakerSearchViewModel,
@@ -40,7 +40,7 @@ export const CreditCardDebtCollectionMakerScreen = () => {
     });
 
     const _onSearchBtnClick = () => {
-        refetch();
+        _setSearchModel(form.getFieldsValue());
     }
 
     const columns = [

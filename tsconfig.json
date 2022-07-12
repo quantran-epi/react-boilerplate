@@ -32,7 +32,8 @@
       "@services/*": ["./src/Services/*"],
       "@app-context": ["./src/AppContext/index.ts"],
       "@hooks": ["./src/Hooks/index.ts"],
-      "@store": ["./src/Store/index.ts"]
+      "@store": ["./src/Store/index.ts"],
+      "@queries": ["./src/Queries/QueryFactory.ts"]
     }
   },
   "include": [

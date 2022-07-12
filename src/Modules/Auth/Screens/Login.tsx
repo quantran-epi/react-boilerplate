@@ -46,7 +46,7 @@ export const LoginScreen: FunctionComponent<ILoginScreenProps> = ({
         onSuccess: (user) => {
             if (user) {
                 let returnUrl = (location.state as any)?.returnUrl;
-                if (!returnUrl || _isLoginUrl(returnUrl)) navigate(RootRoutes.AuthorizedRoutes.Root);
+                if (!returnUrl || _isLoginUrl(returnUrl) || !services.Permission.Role.isAuthorized(returnUrl)) navigate(RootRoutes.AuthorizedRoutes.Root);
                 else navigate(returnUrl);
             }
         }

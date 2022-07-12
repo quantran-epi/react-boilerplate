@@ -1,6 +1,6 @@
-import { AppQueryKeys } from "@common/Constants/AppQueryKeys";
 import { Card } from "@components/Card";
 import { DataTable } from "@components/DataTable";
+import { QueryFactory } from "@queries";
 import { useStore } from "@store";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ export const UserListScreen = () => {
     const { t } = useTranslation('User', { keyPrefix: 'UserList' });
     const setCurrentFunction = useStore((state: any) => state.setCurrentFunction);
     const services = useStore(state => state.services);
-    const { data, isFetching } = useQuery([AppQueryKeys["User.Filter"], _filterQueryParams], {
+    const { data, isFetching } = useQuery(QueryFactory.User.List(_filterQueryParams), {
         queryFn: async (context) => {
             return await services.User.filter(context.queryKey[1] as IUserFilterQueryParams);
         },

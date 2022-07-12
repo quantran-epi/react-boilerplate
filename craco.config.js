@@ -25,6 +25,7 @@ module.exports = {
                 "@app-context": path.resolve(__dirname, "src/AppContext/index"),
                 "@hooks": path.resolve(__dirname, "src/Hooks/index"),
                 "@store": path.resolve(__dirname, "src/Store/index"),
+                "@queries": path.resolve(__dirname, "src/Queries/QueryFactory"),
             }
             webpackConfig.resolve.plugins = webpackConfig.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
             return webpackConfig;

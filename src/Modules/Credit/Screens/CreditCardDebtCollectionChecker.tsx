@@ -1,4 +1,3 @@
-import { AppQueryKeys } from '@common/Constants/AppQueryKeys';
 import { ObjectPropertyHelper } from '@common/Helpers/ObjectProperty';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
@@ -7,10 +6,11 @@ import { Form } from '@components/Form';
 import { Input } from '@components/Form/Input';
 import { Option, Select } from '@components/Form/Select';
 import { Col, Row } from '@components/Grid';
+import { QueryFactory } from '@queries';
 import { useStore } from '@store';
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 import { ICreditCardDebtCollectionCheckerSearchViewModel } from '../ViewModels/ICreditCardDebtCollectionCheckerViewModel';
@@ -18,7 +18,7 @@ import { ICreditCardDebtCollectionCheckerSearchViewModel } from '../ViewModels/I
 export const CreditCardDebtCollectionCheckerScreen = () => {
     const { t } = useTranslation('Credit', { keyPrefix: "CreditCardDebtCollectionChecker" });
     const [form] = Form.useForm<ICreditCardDebtCollectionCheckerSearchViewModel>();
-    const [_searchModel] = useState<ICreditCardDebtCollectionCheckerSearchViewModel>({
+    const [_searchModel, _setSearchModel] = useState<ICreditCardDebtCollectionCheckerSearchViewModel>({
         refNo: "",
         bin: "",
         reversal: "",
@@ -37,7 +37,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
         }
     }, [])
 
-    const { data, isFetching, refetch } = useQuery([AppQueryKeys['Credit.CreditCardDebtCollection.Checker'], _searchModel, _page], {
+    const { data, isFetching } = useQuery(QueryFactory.Credit.CreditCardDebtCollection.Checker(_searchModel, _page), {
         queryFn: async (context) => {
             let data = await services.Credit.CreditCardDebtCollection
                 .searchChecker(context.queryKey[3] as ICreditCardDebtCollectionCheckerSearchViewModel,
@@ -48,7 +48,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
     });
 
     const _onSearchBtnClick = () => {
-        refetch();
+        _setSearchModel(form.getFieldsValue());
     }
 
     const columns = [

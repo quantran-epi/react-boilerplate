@@ -8,7 +8,6 @@ interface IApiConfig {
         MenuDelete: string;
         Role: string;
         RoleDelete: string;
-
         User: string;
         UserDelete: string;
     }
