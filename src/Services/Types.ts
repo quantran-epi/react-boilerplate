@@ -1,3 +1,9 @@
+export interface IMutationResponse<TData = undefined> {
+    status: number;
+    message: string;
+    data: TData;
+}
+
 export interface IQueryResponse<TData> {
     status: number;
     message: string;
@@ -14,5 +20,5 @@ export interface IPaginateQueryResponse<TData> extends IQueryResponse<TData> {
 
 export interface IPaginateQueryParams {
     page: number;
-    pageSize: number;
+    size: number;
 }

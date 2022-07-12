@@ -7,7 +7,13 @@ import { ErrorBoundary } from './ErrorBoundary';
 import { GlobalHandler } from './GlobalHandler';
 import { initI18n } from './I18n/init';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+})
 initI18n();
 
 function App() {

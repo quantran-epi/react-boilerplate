@@ -22,7 +22,7 @@ export const SidebarWidget = () => {
     const _services = useStore(store => store.services);
     const { data, isFetching } = useQuery(AppQueryKeys['Sidebar.Menu'], {
         queryFn: async (context) => {
-            return await _services.Auth.Menu.filterAuthorized();
+            return await _services.Permission.Menu.filterAuthorized();
         },
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 60 * 24 * 30

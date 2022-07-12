@@ -2,11 +2,15 @@ interface IApiConfig {
     Root: string;
     Auth: {
         Login: string;
-        User: string;
     },
     Authorized: {
         Menu: string;
+        MenuDelete: string;
         Role: string;
+        RoleDelete: string;
+
+        User: string;
+        UserDelete: string;
     }
 }
 
@@ -14,10 +18,13 @@ export const ApiConfig: IApiConfig = {
     Root: process.env.REACT_APP_ROOT_API_URL || "",
     Auth: {
         Login: '/auth/signin',
-        User: 'users'
     },
     Authorized: {
         Menu: '/menu',
-        Role: '/role'
+        MenuDelete: '/menu/delete',
+        Role: '/role',
+        RoleDelete: '/role/delete',
+        User: '/users',
+        UserDelete: '/users/delete'
     }
 }

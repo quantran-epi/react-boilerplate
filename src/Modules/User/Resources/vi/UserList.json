@@ -1,0 +1,9 @@
+{
+    "Header": {
+        "Title": "Danh sách người dùng"
+    },
+    "Table": {
+        "Username": "Tên người dùng",
+        "Fullname": "Họ và tên"
+    }
+}

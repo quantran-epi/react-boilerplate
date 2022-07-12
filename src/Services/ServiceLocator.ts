@@ -1,18 +1,20 @@
 import { HttpClient } from '@common/Helpers/Http';
 import { ApiConfig } from '@configs/ApiConfig';
 import { UserService } from '@modules/User/Services/UserService';
-import { MenuService } from '@modules/Auth/Services/MenuService';
-import { RoleService } from '@modules/Auth/Services/RoleService';
 import { CreditCardDebtCollectionService } from '@modules/Credit/Services/CreditCardDebtCollectionService';
 import { IServiceHelperCollection } from './BaseService';
 import { SignInService } from '@modules/Auth/Services/SignInService';
+import { MenuService } from '@modules/Permission/Services/MenuService';
+import { RoleService } from '@modules/Permission/Services/RoleService';
 
 export interface IServiceLocator {
     Auth: {
         SignIn: SignInService,
+    };
+    Permission: {
         Menu: MenuService,
         Role: RoleService
-    };
+    }
     User: UserService,
     Credit: {
         CreditCardDebtCollection: CreditCardDebtCollectionService
@@ -34,6 +36,8 @@ export function RegisterServices(): IServiceLocator {
     return {
         Auth: {
             SignIn: signInService,
+        },
+        Permission: {
             Menu: menuService,
             Role: roleService
         },

@@ -1,7 +1,7 @@
 import Common from './Common.json';
-import Login from './Login.json';
+import UserList from './UserList.json';
 
 export default {
     Common,
-    Login
+    UserList
 }

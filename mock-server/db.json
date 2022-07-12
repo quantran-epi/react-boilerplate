@@ -1,4 +1,27 @@
 {
+  "users": {
+    "status": "00",
+    "message": "Thành công",
+    "pageable": {
+      "page": 0,
+      "size": 20,
+      "total": 1
+    },
+    "data": [
+      {
+        "id": 143,
+        "username": "chungps",
+        "fullname": "Phạm Sỹ Chung",
+        "email": null,
+        "localBranch": null,
+        "phone": null,
+        "status": null,
+        "expireDt": null,
+        "effectiveDt": "2022-06-30T14:49:35",
+        "roles": []
+      }
+    ]
+  },
   "menu": {
     "data": [
       {

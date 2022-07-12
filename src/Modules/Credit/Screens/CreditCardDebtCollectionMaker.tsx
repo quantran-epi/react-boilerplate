@@ -37,7 +37,6 @@ export const CreditCardDebtCollectionMakerScreen = () => {
             return data;
         },
         keepPreviousData: true,
-        refetchOnWindowFocus: false
     });
 
     const _onSearchBtnClick = () => {

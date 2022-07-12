@@ -45,7 +45,6 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
             return data;
         },
         keepPreviousData: true,
-        refetchOnWindowFocus: false
     });
 
     const _onSearchBtnClick = () => {
@@ -80,87 +79,85 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
         }
     ];
 
-    return <React.Fragment>
-        <Card>
-            <Space direction="vertical" size={"middle"} style={{ width: "100%" }}>
-                <Space direction="vertical" size={0} className="app-search-area">
-                    <Form
-                        layout={"vertical"}
-                        form={form}
-                        initialValues={_searchModel}>
-                        <Space size={"middle"}>
-                            <Form.Item
-                                name={ObjectPropertyHelper.nameof(_searchModel, e => e.refNo)}
-                                label={t("Search.RefNo")}>
-                                <Input value={_searchModel.refNo} onChange={(event) => form.setFieldsValue({
-                                    refNo: event.target.value
-                                })} />
-                            </Form.Item>
-                            <Form.Item
-                                name={ObjectPropertyHelper.nameof(_searchModel, e => e.bin)}
-                                label={t("Search.Bin")}>
-                                <Input value={_searchModel.bin} onChange={(event) => form.setFieldsValue({
-                                    bin: event.target.value
-                                })} />
-                            </Form.Item>
-                            <Form.Item
-                                name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
-                                label={t("Search.Reversal")}>
-                                {/* dump */}
-                                <Select>
-                                    <Option value="">Tất cả</Option>
-                                    <Option value="1">Item 1</Option>
-                                    <Option value="2">
-                                        Item 2
-                                    </Option>
-                                </Select>
-                            </Form.Item>
-                            <Form.Item
-                                name={ObjectPropertyHelper.nameof(_searchModel, e => e.fromMakeDate)}
-                                label={t("Search.FromMakeDate")}>
-                                <DatePicker value={_searchModel.fromMakeDate} />
-                            </Form.Item>
-                            <Form.Item
-                                name={ObjectPropertyHelper.nameof(_searchModel, e => e.toMakeDate)}
-                                label={t("Search.ToMakeDate")}>
-                                <DatePicker value={_searchModel.toMakeDate} />
-                            </Form.Item>
+    return <Card>
+        <Space direction="vertical" size={"middle"} style={{ width: "100%" }}>
+            <Space direction="vertical" size={0} className="app-search-area">
+                <Form
+                    layout={"vertical"}
+                    form={form}
+                    initialValues={_searchModel}>
+                    <Space size={"middle"}>
+                        <Form.Item
+                            name={ObjectPropertyHelper.nameof(_searchModel, e => e.refNo)}
+                            label={t("Search.RefNo")}>
+                            <Input value={_searchModel.refNo} onChange={(event) => form.setFieldsValue({
+                                refNo: event.target.value
+                            })} />
+                        </Form.Item>
+                        <Form.Item
+                            name={ObjectPropertyHelper.nameof(_searchModel, e => e.bin)}
+                            label={t("Search.Bin")}>
+                            <Input value={_searchModel.bin} onChange={(event) => form.setFieldsValue({
+                                bin: event.target.value
+                            })} />
+                        </Form.Item>
+                        <Form.Item
+                            name={ObjectPropertyHelper.nameof(_searchModel, e => e.reversal)}
+                            label={t("Search.Reversal")}>
+                            {/* dump */}
+                            <Select>
+                                <Option value="">Tất cả</Option>
+                                <Option value="1">Item 1</Option>
+                                <Option value="2">
+                                    Item 2
+                                </Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item
+                            name={ObjectPropertyHelper.nameof(_searchModel, e => e.fromMakeDate)}
+                            label={t("Search.FromMakeDate")}>
+                            <DatePicker value={_searchModel.fromMakeDate} />
+                        </Form.Item>
+                        <Form.Item
+                            name={ObjectPropertyHelper.nameof(_searchModel, e => e.toMakeDate)}
+                            label={t("Search.ToMakeDate")}>
+                            <DatePicker value={_searchModel.toMakeDate} />
+                        </Form.Item>
+                    </Space>
+                </Form>
+                <Row>
+                    <Col span={24} style={{ textAlign: 'left' }}>
+                        <Space size={"small"}>
+                            <Button disabled={isFetching} type="primary" htmlType="submit" onClick={_onSearchBtnClick}>
+                                Search
+                            </Button>
+                            <Button disabled={isFetching}>
+                                Processing
+                            </Button>
+                            <Button
+                                disabled={isFetching}
+                                onClick={() => {
+                                    form.resetFields();
+                                }}>
+                                Cancel
+                            </Button>
                         </Space>
-                    </Form>
-                    <Row>
-                        <Col span={24} style={{ textAlign: 'left' }}>
-                            <Space size={"small"}>
-                                <Button disabled={isFetching} type="primary" htmlType="submit" onClick={_onSearchBtnClick}>
-                                    Search
-                                </Button>
-                                <Button disabled={isFetching}>
-                                    Processing
-                                </Button>
-                                <Button
-                                    disabled={isFetching}
-                                    onClick={() => {
-                                        form.resetFields();
-                                    }}>
-                                    Cancel
-                                </Button>
-                            </Space>
-                        </Col>
-                    </Row>
-                </Space>
-                <DataTable
-                    rowSelection={{
-                        type: "checkbox",
-                    }}
-                    loading={isFetching}
-                    size={"small"}
-                    dataSource={data?.data}
-                    columns={columns}
-                    pagination={{
-                        total: data?.pageable?.total,
-                        onChange: (page: number) => _setPage(page),
-                        showSizeChanger: false
-                    }} />
+                    </Col>
+                </Row>
             </Space>
-        </Card>
-    </React.Fragment>
+            <DataTable
+                rowSelection={{
+                    type: "checkbox",
+                }}
+                loading={isFetching}
+                size={"small"}
+                dataSource={data?.data}
+                columns={columns}
+                pagination={{
+                    total: data?.pageable?.total,
+                    onChange: (page: number) => _setPage(page),
+                    showSizeChanger: false
+                }} />
+        </Space>
+    </Card>
 } 

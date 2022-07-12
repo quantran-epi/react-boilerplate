@@ -10,7 +10,6 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { RootRoutes } from './RootRoutes';
 
 export const AuthorizedRouter = () => {
-    console.log('render');
     const services = useStore(state => state.services);
     const queryClient = useQueryClient();
     const navigate = useNavigate();

@@ -6,6 +6,7 @@ import { CreditCardDebtCollectionMakerScreen } from '@modules/Credit/Screens/Cre
 import { ErrorScreen } from '@modules/Static/Error';
 import { NotFoundScreen } from '@modules/Static/NotFound';
 import { UserRouter } from '@modules/User/Routing/UserRouter';
+import { UserListScreen } from '@modules/User/Screens/UserList';
 import {
     BrowserRouter, Route, Routes
 } from "react-router-dom";
@@ -25,6 +26,7 @@ export const RootRouter = () => {
                     <Route path={RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker} element={<CreditCardDebtCollectionCheckerScreen />} />
                 </Route>
                 <Route path={RootRoutes.AuthorizedRoutes.UserRoutes.Root} element={<UserRouter />}>
+                    <Route index element={<UserListScreen />} />
                 </Route>
             </Route>
             <Route path={RootRoutes.StaticRoutes.Error} element={<ErrorScreen />} />
