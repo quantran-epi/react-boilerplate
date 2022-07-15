@@ -29,7 +29,7 @@ export const SidebarWidget = () => {
     });
     const {
         sideBarItems, selectedItems, openItems, setOpenItems, searchText, onChangeSearchText
-    } = useSidebar({ mode: "single", serverMenuItems: data || [] });
+    } = useSidebar({ mode: "single", serverMenuItems: data });
     const navigate = useNavigate();
     const { t } = useTranslation("Common");
     const _handleMenuItemClick = (item: ISidebarItem) => {

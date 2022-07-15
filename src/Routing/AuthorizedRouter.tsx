@@ -17,7 +17,7 @@ export const AuthorizedRouter = () => {
 
     useEffect(() => {
         if (!_isAccessible())
-            navigate(RootRoutes.AuthRoutes.Login, {
+            navigate(RootRoutes.AuthRoutes.Login(), {
                 state: {
                     returnUrl: location.pathname
                 }

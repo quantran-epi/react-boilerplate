@@ -44,7 +44,7 @@ export const CreditCardDebtCollectionCheckerScreen = () => {
                     context.queryKey[4] as number)
             return data;
         },
-        keepPreviousData: true,
+        keepPreviousData: true
     });
 
     const _onSearchBtnClick = () => {

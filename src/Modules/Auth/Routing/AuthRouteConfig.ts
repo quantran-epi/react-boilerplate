@@ -1,4 +1,6 @@
-export const AuthRoutes = {
-    Root: '/auth/',
-    Login: '/auth/login'
+const AuthRoutes = {
+    Root: '/auth',
+    Login: () => AuthRoutes.Root.concat('/login')
 }
+
+export default AuthRoutes

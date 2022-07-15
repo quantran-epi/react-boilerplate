@@ -1,6 +1,6 @@
 import { IServerMenuItem } from "@models/Server/ServerMenuItem";
 import { ISidebarItem } from "@models/Sidebar";
-import { transform, uniq } from 'lodash';
+import { uniq } from 'lodash';
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
@@ -17,13 +17,18 @@ interface IUseSidebar {
 
 interface IUseSidebarProps {
     mode: "single" | "multiple";
-    serverMenuItems: IServerMenuItem[];
+    serverMenuItems?: IServerMenuItem[];
 }
 
-export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
+var emptyArr = [] as any[];
+
+export const useSidebar = ({
+    mode = "single",
+    serverMenuItems = emptyArr
+}: IUseSidebarProps): IUseSidebar => {
 
     const _transformServerMenuItem = (): ISidebarItem[] => {
-        let serverMenuItems = props?.serverMenuItems.map<ISidebarItem>(e => ({
+        let _serverMenuItems = serverMenuItems.map<ISidebarItem>(e => ({
             key: e.id.toString(),
             label: e.title,
             href: e.link || undefined,
@@ -32,7 +37,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
         })) || [];
 
         function getChildren(sideBarItemId: string): any[] {
-            let children = serverMenuItems.filter(e => e.parentId === sideBarItemId);
+            let children = _serverMenuItems.filter(e => e.parentId === sideBarItemId);
             if (children.length === 0) return [];
 
             return children.map(child => ({
@@ -41,7 +46,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
             }))
         }
 
-        return serverMenuItems.filter(e => !e.parentId).map(e => ({
+        return _serverMenuItems.filter(e => !e.parentId).map(e => ({
             ...e,
             children: getChildren(e.key)
         }))
@@ -59,23 +64,21 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
     const [_searchText, _setSearchText] = useState<string>("");
 
     useEffect(() => {
-        _setSideBarItems(_transformSidebarItems(_transformServerMenuItem(), 0, undefined));
-    }, [props?.serverMenuItems])
+        let sidebarItems = _transformSidebarItems(_transformServerMenuItem(), 0, undefined);
+        _setSideBarItems(sidebarItems);
+        let selectedItems = _selectedItems(sidebarItems);
+        _setOpenItems(uniq(sidebarItems.map(item => _getParentOfSelected(item, "", selectedItems)).flat()));
+    }, [serverMenuItems, location])
 
-    useEffect(() => {
-        let selectedItems = _selectedItems();
-        _setOpenItems(uniq(_sideBarItems.map(item => getParentOfSelected(item, "", selectedItems)).flat()));
-    }, [location, _sideBarItems])
-
-    const getParentOfSelected = (item: ISidebarItem, parent: string, selectedItems: string[]): string[] => {
+    const _getParentOfSelected = (item: ISidebarItem, parent: string, selectedItems: string[]): string[] => {
         if (selectedItems.includes(item.key)) return [parent];
-        let values = item.children?.map(e => getParentOfSelected(e, item.key, selectedItems)).flat();
+        let values = item.children?.map(e => _getParentOfSelected(e, item.key, selectedItems)).flat();
         if (values && values?.length > 0) return [item.key, ...values];
         return [];
     }
 
-    const _selectedItems = (): string[] => {
-        return _sideBarItems.map(item => _getSelected(item)).flat();
+    const _selectedItems = (sidebarItems: ISidebarItem[]): string[] => {
+        return sidebarItems.map(item => _getSelected(item)).flat();
     }
 
     const _getSelected = (item: ISidebarItem): string[] => {
@@ -122,7 +125,7 @@ export const useSidebar = (props?: IUseSidebarProps): IUseSidebar => {
 
     return {
         sideBarItems: _filteredSidebarItems(),
-        selectedItems: _selectedItems(),
+        selectedItems: _selectedItems(_sideBarItems),
         openItems: _openItems,
         addOpenItem: _addOpenItem,
         removeOpenItem: _removeOpenItem,

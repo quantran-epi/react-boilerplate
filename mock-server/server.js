@@ -26,7 +26,7 @@ server.post("/auth/signin", (req, res) => {
                 roles: [
                     {
                         id: 2,
-                        name: "Credit Role",
+                        name: "test",
                         description: null,
                         createdBy: null,
                         createdAt: null,
@@ -53,6 +53,20 @@ server.post("/auth/signin", (req, res) => {
                                 "link": "/credit/CreditCardDebtCollectionChecker",
                                 "viewStatus": "1",
                                 "parentId": 1
+                            },
+                            {
+                                "id": 6,
+                                "title": "ATM",
+                                "link": null,
+                                "viewStatus": "1",
+                                "parentId": null
+                            },
+                            {
+                                "id": 7,
+                                "title": "Quản lý chu kỳ quỹ ATM",
+                                "link": "/atm/updateAtmCycle",
+                                "viewStatus": "1",
+                                "parentId": 6
                             }
                         ]
                     }

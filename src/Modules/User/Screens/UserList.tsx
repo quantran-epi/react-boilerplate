@@ -54,7 +54,7 @@ export const UserListScreen = () => {
                     ..._filterQueryParams,
                     page: page
                 }),
-                showSizeChanger: false
+                showSizeChanger: false,
             }} />
     </Card>
 }

@@ -1,3 +1,5 @@
+import { ATMRouter } from '@modules/ATM/Routing/ATMRouter';
+import { UpdateATMCycleScreen } from '@modules/ATM/Screens/UpdateATMCycle';
 import { AuthRouter } from '@modules/Auth/Routing/AuthRouter';
 import { LoginScreen } from '@modules/Auth/Screens/Login';
 import { CreditRouter } from '@modules/Credit/Routing/CreditRouter';
@@ -18,18 +20,20 @@ export const RootRouter = () => {
         <Routes>
             <Route path={RootRoutes.AuthRoutes.Root} element={<AuthRouter />}>
                 <Route index element={<LoginScreen />} />
-                <Route path={RootRoutes.AuthRoutes.Login} element={<LoginScreen />} />
+                <Route path={RootRoutes.AuthRoutes.Login()} element={<LoginScreen />} />
             </Route>
             <Route path={RootRoutes.AuthorizedRoutes.Root} element={<AuthorizedRouter />}>
                 <Route path={RootRoutes.AuthorizedRoutes.CreditRoutes.Root} element={<CreditRouter />}>
                     <Route path={RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionMaker} element={<CreditCardDebtCollectionMakerScreen />} />
                     <Route path={RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker} element={<CreditCardDebtCollectionCheckerScreen />} />
                 </Route>
+                <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.Root} element={<ATMRouter />}>
+                    <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.UpdateATMCycle()} element={< UpdateATMCycleScreen />} />
+                </Route>
                 <Route path={RootRoutes.AuthorizedRoutes.UserRoutes.Root} element={<UserRouter />}>
                     <Route index element={<UserListScreen />} />
                 </Route>
             </Route>
-            <Route path={RootRoutes.StaticRoutes.Error} element={<ErrorScreen />} />
             <Route path={RootRoutes.StaticRoutes.NotFound} element={<NotFoundScreen />} />
         </Routes>
     </BrowserRouter>

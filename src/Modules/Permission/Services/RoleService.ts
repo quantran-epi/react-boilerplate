@@ -23,7 +23,7 @@ export class RoleService extends BaseService implements IRoleService {
     }
 
     private _isAnonymousRoutes = (location: string): boolean => {
-        return location === RootRoutes.AuthRoutes.Root || location === RootRoutes.AuthRoutes.Login;
+        return location === RootRoutes.AuthRoutes.Root || location === RootRoutes.AuthRoutes.Login();
     }
 
     private _isStaticRoutes = (location: string): boolean => {

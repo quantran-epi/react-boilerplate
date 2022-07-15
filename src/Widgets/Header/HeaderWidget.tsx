@@ -27,7 +27,7 @@ export const HeaderWidget: FunctionComponent<IHeaderWidgetProps> = ({
     const currentFunction = useStore((state: any) => state.currentFunction);
     const _onLogoutClick = () => {
         services.Auth.SignIn.logout();
-        navigate(RootRoutes.AuthRoutes.Login);
+        navigate(RootRoutes.AuthRoutes.Login());
     }
 
     return <Header className="header" style={{

@@ -1,3 +1,5 @@
-export const UserRoutes = {
-    Root: '/user/',
+const UserRoutes = {
+    Root: '/user',
 }
+
+export default UserRoutes

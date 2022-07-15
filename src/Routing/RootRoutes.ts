@@ -1,11 +1,13 @@
-import { AuthRoutes } from '@modules/Auth/Routing/AuthRouteConfig';
-import { CreditRoutes } from '@modules/Credit/Routing/CreditRouteConfig';
-import { UserRoutes } from '@modules/User/Routing/UserRouteConfig';
+import AuthRoutes from '@modules/Auth/Routing/AuthRouteConfig';
+import CreditRoutes from '@modules/Credit/Routing/CreditRouteConfig';
+import UserRoutes from '@modules/User/Routing/UserRouteConfig';
+import ATMRoutes from '@modules/ATM/Routing/ATMRouteConfig';
 
 const AuthorizedRoutes = {
     Root: "/",
     CreditRoutes,
-    UserRoutes
+    UserRoutes,
+    ATMRoutes
 }
 
 export const RootRoutes = {
