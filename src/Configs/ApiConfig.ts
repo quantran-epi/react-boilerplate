@@ -10,6 +10,12 @@ interface IApiConfig {
         RoleDelete: string;
         User: string;
         UserDelete: string;
+
+        ATM: {
+            ATMCyle: {
+                Search: string;
+            }
+        }
     }
 }
 
@@ -24,6 +30,12 @@ export const ApiConfig: IApiConfig = {
         Role: '/role',
         RoleDelete: '/role/delete',
         User: '/users',
-        UserDelete: '/users/delete'
+        UserDelete: '/users/delete',
+
+        ATM: {
+            ATMCyle: {
+                Search: ''
+            }
+        }
     }
 }

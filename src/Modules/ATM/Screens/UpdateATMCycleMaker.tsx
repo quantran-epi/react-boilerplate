@@ -1,18 +1,17 @@
-import { Card } from "@components/Card"
-import { useStore } from "@store";
-import { useEffect, useState } from "react";
-import { Form } from '@components/Form';
-import { useTranslation } from "react-i18next";
-import { IUpdateATMCycleMakerSearchViewModel } from "../ViewModels/UpdateATMCycleMakerSearchViewModel";
-import { Space } from "@components/Layout/Space";
 import { ObjectPropertyHelper } from "@common/Helpers/ObjectProperty";
 import { Button } from "@components/Button";
+import { Card } from "@components/Card";
+import { Form } from '@components/Form';
 import { Option, Select } from "@components/Form/Select";
 import { Col, Row } from "@components/Grid";
-import { Stack } from "@components/Layout/Stack";
-import { Divider } from "@components/Layout/Divider";
-import { useQuery } from "react-query";
+import { Space } from "@components/Layout/Space";
 import { Spin } from "@components/Spin";
+import { QueryFactory } from "@queries";
+import { useStore } from "@store";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { IUpdateATMCycleMakerSearchViewModel } from "../ViewModels/UpdateATMCycleMakerSearchViewModel";
 
 export const UpdateATMCycleMakerScreen = () => {
     const { t: transCommon } = useTranslation('Common');
@@ -25,7 +24,11 @@ export const UpdateATMCycleMakerScreen = () => {
         atmCode: "",
         atmCycle: ""
     });
-    const { data, isFetching } = useQuery('');
+    // const { data, isFetching } = useQuery(QueryFactory.ATM.ATMCycle.Search(_searchViewModel), {
+    //     queryFn: async (context) => {
+    //         return await services.ATM.ATMCycle.search(context.queryKey[2] as IUpdateATMCycleMakerSearchViewModel);
+    //     },
+    // });
 
     useEffect(() => {
         setCurrentFunction(t("Header.Title"));
@@ -36,7 +39,7 @@ export const UpdateATMCycleMakerScreen = () => {
     }, [])
 
     const _onSearchBtnClick = () => {
-
+        _setSearchViewModel(searchForm.getFieldsValue());
     }
 
     return <Card>
@@ -105,16 +108,14 @@ export const UpdateATMCycleMakerScreen = () => {
                     </Row>
                 </Form>
 
-                {data && <Divider />}
-
-                <Spin spinning={isFetching}>
+                {/* <Spin spinning={isFetching}>
                     <Form
                         layout={"vertical"}
                         form={searchForm}
                         initialValues={_searchViewModel}>
 
                     </Form>
-                </Spin>
+                </Spin> */}
             </Space>
         </Space>
     </Card>
