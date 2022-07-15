@@ -1,5 +1,5 @@
 import Common from './Common.json';
-import UpdateATMCycle from './UpdateATMCycle.json';
+import UpdateATMCycle from './UpdateATMCycleMaker.json';
 
 export default {
     Common,

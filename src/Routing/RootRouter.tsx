@@ -1,5 +1,7 @@
 import { ATMRouter } from '@modules/ATM/Routing/ATMRouter';
-import { UpdateATMCycleScreen } from '@modules/ATM/Screens/UpdateATMCycle';
+import { UpdateATMCycleDetailCheckerScreen } from '@modules/ATM/Screens/UpdateATMCycleChecker/UpdateATMCycleDetailChecker';
+import { UpdateATMCycleListCheckerScreen } from '@modules/ATM/Screens/UpdateATMCycleChecker/UpdateATMCycleListChecker';
+import { UpdateATMCycleMakerScreen } from '@modules/ATM/Screens/UpdateATMCycleMaker';
 import { AuthRouter } from '@modules/Auth/Routing/AuthRouter';
 import { LoginScreen } from '@modules/Auth/Screens/Login';
 import { CreditRouter } from '@modules/Credit/Routing/CreditRouter';
@@ -28,7 +30,10 @@ export const RootRouter = () => {
                     <Route path={RootRoutes.AuthorizedRoutes.CreditRoutes.CreditCardDebtCollectionChecker} element={<CreditCardDebtCollectionCheckerScreen />} />
                 </Route>
                 <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.Root} element={<ATMRouter />}>
-                    <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.UpdateATMCycle()} element={< UpdateATMCycleScreen />} />
+                    <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.UpdateATMCycleMaker()} element={< UpdateATMCycleMakerScreen />} />
+                    <Route path={RootRoutes.AuthorizedRoutes.ATMRoutes.UpdateATMCycleListChecker()} element={<UpdateATMCycleListCheckerScreen />}>
+                        <Route path=':id' element={<UpdateATMCycleDetailCheckerScreen />} />
+                    </Route>
                 </Route>
                 <Route path={RootRoutes.AuthorizedRoutes.UserRoutes.Root} element={<UserRouter />}>
                     <Route index element={<UserListScreen />} />

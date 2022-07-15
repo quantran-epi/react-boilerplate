@@ -64,7 +64,14 @@ server.post("/auth/signin", (req, res) => {
                             {
                                 "id": 7,
                                 "title": "Quản lý chu kỳ quỹ ATM",
-                                "link": "/atm/updateAtmCycle",
+                                "link": "/atm/updateAtmCycleMaker",
+                                "viewStatus": "1",
+                                "parentId": 6
+                            },
+                            {
+                                "id": 8,
+                                "title": "Quản lý chu kỳ quỹ ATM",
+                                "link": "/atm/updateAtmCycleChecker",
                                 "viewStatus": "1",
                                 "parentId": 6
                             }

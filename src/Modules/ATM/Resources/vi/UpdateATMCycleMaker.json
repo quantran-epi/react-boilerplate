@@ -1,0 +1,14 @@
+{
+    "Header": {
+        "Title": "Cập nhật thông tin quản lý chu kỳ quỹ ATM"
+    },
+    "Search": {
+        "PosId": "Chi nhánh",
+        "AtmCode": "Mã ATM",
+        "AtmCycle": "ATM Cycle",
+        "Button": {
+            "SendRequest": "Gửi duyệt",
+            "ViewHistory": "Xem lịch sử thay đổi"
+        }
+    }
+}

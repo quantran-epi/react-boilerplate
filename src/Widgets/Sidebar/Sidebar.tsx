@@ -9,13 +9,51 @@ import { Space } from '@components/Layout/Space';
 import { Stack } from '@components/Layout/Stack';
 import { Typography } from '@components/Typography';
 import { useSidebar } from '@hooks';
+import { IServerMenuItem } from '@models/Server/ServerMenuItem';
 import { ISidebarItem } from '@models/Sidebar';
 import { QueryFactory } from '@queries';
+import { RootRoutes } from '@routing/RootRoutes';
 import { useStore } from '@store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+
+const getData = (): IServerMenuItem[] => {
+    let count = 1;
+    let roots: IServerMenuItem[] = new Array(50).fill(1).map(e => ({
+        id: count++,
+        link: 'link' + count,
+        title: 'level 1 -' + count,
+        parentId: null,
+        viewStatus: '1'
+    }));
+
+    let level2 = [] as IServerMenuItem[];
+    roots.forEach(root => {
+        level2 = level2.concat(new Array(5).fill(1).map(e => ({
+            id: count++,
+            link: 'link ' + count,
+            title: 'level 2 - ' + count,
+            parentId: root.id,
+            viewStatus: '1'
+        })))
+    });
+
+    let level3 = [] as IServerMenuItem[];
+    level2.forEach(root => {
+        level3 = level3.concat(new Array(5).fill(1).map(e => ({
+            id: count++,
+            link: count === 559 ? RootRoutes.AuthorizedRoutes.ATMRoutes.UpdateATMCycleMaker() : 'link ' + count,
+            title: 'level 3 - ' + count,
+            parentId: root.id,
+            viewStatus: '1'
+        })))
+    });
+    let result = roots.concat(level2).concat(level3);
+    console.log('fake menu items', result);
+    return result;
+}
 
 export const SidebarWidget = () => {
     const [collapsed, setCollapsed] = useState(false);

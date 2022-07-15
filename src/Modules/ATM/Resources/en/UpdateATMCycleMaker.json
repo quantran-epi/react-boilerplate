@@ -1,0 +1,10 @@
+{
+    "Header": {
+        "Title": "Cập nhật thông tin quản lý chu kỳ quỹ ATM - en"
+    },
+    "Search": {
+        "PosId": "Chi nhánh",
+        "AtmCode": "Mã ATM",
+        "AtmCycle": "ATM Cycle"
+    }
+}

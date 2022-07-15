@@ -6,5 +6,8 @@
             "Logout": "Đăng xuất"
         }
     },
-    "Sidebar": {}
+    "Sidebar": {},
+    "Button": {
+        "Search": "Tìm kiếm"
+    }
 }

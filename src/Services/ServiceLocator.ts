@@ -6,6 +6,7 @@ import { IServiceHelperCollection } from './BaseService';
 import { SignInService } from '@modules/Auth/Services/SignInService';
 import { MenuService } from '@modules/Permission/Services/MenuService';
 import { RoleService } from '@modules/Permission/Services/RoleService';
+import { ATMCycleService } from '@modules/ATM/Services/ATMCycleService';
 
 export interface IServiceLocator {
     Auth: {
@@ -19,6 +20,9 @@ export interface IServiceLocator {
     Credit: {
         CreditCardDebtCollection: CreditCardDebtCollectionService
     },
+    ATM: {
+        ATMCycle: ATMCycleService
+    }
 }
 
 export function RegisterServices(): IServiceLocator {
@@ -33,6 +37,8 @@ export function RegisterServices(): IServiceLocator {
 
     let creditCardDebtCollectionService = new CreditCardDebtCollectionService(helpers);
 
+    let atmCycleServices = new ATMCycleService(helpers);
+
     return {
         Auth: {
             SignIn: signInService,
@@ -44,6 +50,9 @@ export function RegisterServices(): IServiceLocator {
         User: userService,
         Credit: {
             CreditCardDebtCollection: creditCardDebtCollectionService
+        },
+        ATM: {
+            ATMCycle: atmCycleServices
         }
     }
 }
